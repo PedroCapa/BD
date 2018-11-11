@@ -1,12 +1,8 @@
 Use mercado;
 
-SELECT * FROM utilizador;
-
 INSERT INTO utilizador 
-	VALUES(1, 'Lucas Peixoto Silva', 'Rua dos Gritos nº1', '2012-01-17');
-    
-INSERT INTO utilizador
-	VALUES(2, 'Luís Filipe da Costa Capa', 'Estádio do Dragão', '1998-12-01'),
+	VALUES(1, 'Lucas Peixoto Silva', 'Rua dos Gritos nº1', '2012-01-17'),
+		  (2, 'Luís Filipe da Costa Capa', 'Estádio do Dragão', '1998-12-01'),
 		  (3, ' Moisés Araújo Antunes', 'Estádio do Dragão', '1999-04-14'),
 		  (4, 'Pedro Miguel da Costa Capa', 'Estádio do Dragão', '1998-12-01'),
           (5, 'Tiago Martins Pinheiro', 'Estádio do Dragão', '1998-08-06'),
