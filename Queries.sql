@@ -107,3 +107,71 @@ WHERE
         && pc.Compra_ID = c.Id
         && c.Fatura_ID = f.Id
         && u.NIF = f.NIF_comprador;
+
+-- As 5 compras mais caras do sistema
+SELECT 
+    *
+FROM
+    fatura f
+ORDER BY f.preco DESC
+LIMIT 5;
+
+-- Lista de Faturas do mês de Janeiro de 2018 (VIEW)
+CREATE VIEW Faturas_Janeiro_2018 AS
+    SELECT 
+        *
+    FROM
+        faturas f
+    WHERE
+        f.data BETWEEN '2018-10-01' AND '2018-10-31';
+
+SELECT * from Faturas_Janeiro_2018;
+
+-- Produtos que um dado utilizador colocou para a venda (Procedure)
+Delimiter // 
+CREATE PROCEDURE produto_Venda_utilizador(IN uti INT)
+	Begin 
+		select p from produto p, utilizador u
+			where uti = p.Utilizador_NIF;
+    END //
+Delimiter //
+
+CALL produto_Venda_utilizador(1);
+
+-- Numero de Produtos no qual a quantidade era superior a n (Function)
+Delimiter // 
+CREATE FUNCTION QuantidadeProdutosN(val Int)
+	Returns Int
+    DETERMINISTIC
+    Begin 
+		DECLARE res Int;
+        SET res = (Select Count(p.Id) from produto p where p.quantidade > val);
+               
+        return res;
+    END //
+Delimiter //
+
+Call QuantidadeProdutosN(5);
+
+-- Cliente gastou num determinado periodo
+Delimiter // 
+CREATE PROCEDURE gastouUtilizadorTempo(IN uti INT, IN begin DATE, IN end DATE)
+	Begin 
+	SELECT SUM(Preco) from fatura f
+		where uti = f.NIF_comprador;
+    END //
+Delimiter //
+
+Call gastouUtilizadorTempo(1);
+
+-- Quanto um utilizador recebeu
+Delimiter // 
+CREATE PROCEDURE ganhouUtilizadorTempo(IN uti INT, IN begin DATE, IN end DATE)
+	Begin 
+	select Sum(pc.quantidade * p.preco) from (
+		SELECT pc.quantidade, p.preco from fatura f, produto_compra pc, produto p
+			where uti = f.NIF_comprador && pc.Produto_id = p.Id);
+    END //
+Delimiter //
+
+Call ganhouUtilizadorTempo(10);
