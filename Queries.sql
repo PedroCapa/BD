@@ -7,7 +7,7 @@ FROM
     utilizador;
 
 -- Ver todos os produtos
-SELECT 
+SELECT
     *
 FROM
     produto;
@@ -36,7 +36,7 @@ FROM
     produto p,
     utilizador u
 WHERE
-    u.NIF = p.Utilizador_NIF AND u.NIF = 10;
+    u.NIF = p.Utilizador_NIF AND u.NIF = 11;
     
 -- Ver todas as compras do utilizador 2
 SELECT 
@@ -131,7 +131,7 @@ SELECT * from Faturas_Janeiro_2018;
 Delimiter // 
 CREATE PROCEDURE produto_Venda_utilizador(IN uti INT)
 	Begin 
-		select p from produto p, utilizador u
+		select * from produto p
 			where uti = p.Utilizador_NIF;
     END //
 Delimiter //
@@ -145,33 +145,62 @@ CREATE FUNCTION QuantidadeProdutosN(val Int)
     DETERMINISTIC
     Begin 
 		DECLARE res Int;
-        SET res = (Select Count(p.Id) from produto p where p.quantidade > val);
+        SET res = (Select Count(Id) from produto p where p.quantidade > val);
                
         return res;
     END //
 Delimiter //
 
-Call QuantidadeProdutosN(5);
+SELECT Distinct QuantidadeProdutosN(1) from produto;
 
 -- Cliente gastou num determinado periodo
 Delimiter // 
-CREATE PROCEDURE gastouUtilizadorTempo(IN uti INT, IN begin DATE, IN end DATE)
+CREATE PROCEDURE gastouUtilizadorPeriodo(IN uti INT, IN begin DATE, IN end DATE)
 	Begin 
 	SELECT SUM(Preco) from fatura f
 		where uti = f.NIF_comprador;
     END //
 Delimiter //
 
-Call gastouUtilizadorTempo(1);
+Call gastouUtilizadorPeriodo(11, '1900-01-01', '2020-01-01');
 
--- Quanto um utilizador recebeu
+-- Quanto um utilizador recebeu em vendas
 Delimiter // 
-CREATE PROCEDURE ganhouUtilizadorTempo(IN uti INT, IN begin DATE, IN end DATE)
+CREATE PROCEDURE ganhouUtilizadorPeriodo(IN uti INT)
 	Begin 
 	select Sum(pc.quantidade * p.preco) from (
-		SELECT pc.quantidade, p.preco from fatura f, produto_compra pc, produto p
+		SELECT pc.quantidade, p.preco from produto_compra pc, produto p
 			where uti = f.NIF_comprador && pc.Produto_id = p.Id);
     END //
 Delimiter //
 
-Call ganhouUtilizadorTempo(10);
+Call ganhouUtilizadorPeriodo(10);
+
+-- Registar um utilizador no sistema
+Delimiter // 
+CREATE PROCEDURE Registar(IN uti INT, IN nome VARCHAR(45), IN morada varchar(45), IN nascimento DATE)
+	Begin 
+	INSERT INTO utilizador Values(uti, nome, morada, nascimento);    
+    END //
+Delimiter //
+
+Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22');
+Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11');
+
+-- Utilizador coloca um artigo para a venda
+
+-- Ver mais tarde
+
+Delimiter // 
+CREATE Function AdicionarProduto(designacao VARCHAR(45), descricao VARCHAR(150), preco Int, categoria VARCHAR(30), nif Int, quantidade Int)
+	Returns Int 
+    DETERMINISTIC
+		Begin
+			Declare id Int;
+            Set id = (Select (Max(id) + 1) from produto);
+            Insert Into produto Values (id, designacao, descricao, preco, categoria, nif, quantidade);
+		return id;
+		End //
+Delimiter //
+
+SELECT AdicionarProduto('lamborghini murcielago', 'Melhor carro do mundo', 1500000, 'Automóvel', 13, 20) from produto;
