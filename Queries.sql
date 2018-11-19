@@ -41,7 +41,6 @@ SELECT SUM(c.preco)
     u.NIF = 3 AND u.NIF = p.Id
         AND p.Id = pc.Produto_Id
         AND pc.Compra_ID = c.Id
-        AND c.Fatura_ID = f.Id
         AND f.data BETWEEN '2018-10-01' AND '2018-10-31';
 
 -- Todos os utilizadores que compraram produtos de uma dada categoria

@@ -1,6 +1,6 @@
 Use mercado;
 
-INSERT INTO utilizador 
+INSERT INTO utilizador (NIF, Nome, Morada, DataNascimento, password)
 	VALUES(1, 'Lucas Peixoto Silva', 'Rua dos Gritos nº1', '2012-01-17', 'LPS2012'),
 		  (2, 'Luís Filipe da Costa Capa', 'Vila Verde', '1998-12-01', 'LFCC1998'),
 		  (3, ' Moisés Araújo Antunes', 'Maria da Fonte', '1999-04-14', 'MAA1999'),
@@ -14,7 +14,7 @@ INSERT INTO utilizador
           (11, 'SAMSUNG', ' Seul Coreia do Sul', '1938-01-01', 'S1938'),
           (12, 'Jonas Gonçalves', 'Lisboa', '1986-05-08', 'JG1986'),
           (13, 'Lamborghini', 'Sant Agata Bolognese','1963-10-30', 'L1963'),
-          (14, 'Ferrari','	Maranello','1939-09-13', '1939'),
+          (14, 'Ferrari','	Maranello','1939-09-13', 'F1939'),
           (15, 'Apple', 'California', '1976-04-01', 'A1976');
           
 INSERT INTO metodospagamento 
