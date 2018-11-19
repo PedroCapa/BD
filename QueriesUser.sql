@@ -35,7 +35,7 @@ Delimiter //
 
 -- Alterar morada utilizador
 Delimiter //
-CREATE PROCEDURE alterarMorada(IN nif INT, IN morada VARCHAR(45)
+CREATE PROCEDURE alterarMorada(IN nif INT, IN morada VARCHAR(45))
 BEGIN
 	UPDATE Utilizador u
 	SET u.Morada = morada
@@ -43,11 +43,41 @@ BEGIN
 END
 Delimiter //
 
--- Aceder a todas as faturas que um utilizador possui
+-- Alterar password
+Delimiter //
+CREATE PROCEDURE alteraPassword(IN nif INT, IN pass VARCHAR(32))
+BEGIN
+	UPDATE Utilizador u
+    SET u.password = pass
+    WHERE u.NIF = nif;
+END //
+Delimiter //
+
+-- Carregar a conta
+Delimiter //
+CREATE PROCEDURE carregaConta(IN nif INT, IN valor DECIMAL(8,2))
+BEGIN
+	UPDATE Utilizador u
+    SET u.Saldo = u.Saldo + valor
+    WHERE u.NIF = nif;
+END //
+Delimiter //
+
+-- Levantar dinheiro
+Delimiter //
+CREATE PROCEDURE levantaDinheiro(IN nif INT, IN valor DECIMAL(8,2))
+BEGIN
+	UPDATE Utilizador u
+    SET u.Saldo = u.Saldo - valor
+    WHERE u.NIF = nif;
+END //
+Delimiter //
+
+-- Aceder a todas as compras que um utilizador fez
 Delimiter //
 CREATE PROCEDURE faturasPessoais(IN nif INT)
 BEGIN
-	SELECT * FROM Fatura f
-		WHERE f.NIF_Comprador = nif;
+	SELECT * FROM Compra AS c, Carrinho AS car
+		WHERE car.NIF = nif AND c.Cart = car.Id;
 END //
 Delimiter //
