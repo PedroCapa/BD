@@ -1,31 +1,31 @@
 Use mercado;
 
--- Ver todos os utilizadores
+-- Ver todos os utilizadores 
 SELECT * FROM utilizador;
 
--- Ver todos os produtos
+-- Ver todos os produtos 
 SELECT * FROM produto;
 
--- Ver todos os anuncios disponíveis
-SELECT * FROM produto a
-	WHERE a.quantidade > 0;
+-- Ver todos os produtos disponíveis 
+SELECT * FROM produto p
+	WHERE p.quantidade > 0;
 
--- Ver todos os produtos disponiveis para venda ordenados por tipo
+-- Ver todos os produtos disponiveis para venda ordenados por categoria
 SELECT * FROM produto p
 	WHERE p.quantidade > 0
-	ORDER BY p.Categoria; 
+		ORDER BY p.Categoria; 
 
--- Ver todos os produtos colocados à venda pelo utilizador 10
+-- Ver todos os produtos colocados à venda pelo utilizador 10 
 SELECT * FROM produto p, utilizador u
-	WHERE u.NIF = p.Utilizador_NIF AND u.NIF = 10;
+	WHERE u.NIF = 10 AND u.NIF = p.NIF;
     
 -- Ver todas as compras do utilizador 2
-SELECT * FROM fatura f, utilizador u
-	WHERE u.NIF = f.NIF_comprador AND u.NIF = 2;
+SELECT * FROM carrinho c, utilizador u
+	WHERE u.NIF = 2 AND u.NIF = c.NIF;
 
 -- Ver a quantidade que foi vendida o produto 3
-SELECT SUM(pc.quantidade) FROM produto p, Produto_Compra pc
-	WHERE p.Id = pc.Produto_Id && p.Id = 3;
+SELECT SUM(c.quantidade) FROM produto p, compra c
+	WHERE p.Id = 3 AND p.Id = c.prod;
 
 -- Numero de vezes que o produto 3 foi vendido
 SELECT COUNT(p.Id) FROM produto p, Produto_Compra pc
@@ -141,8 +141,8 @@ CREATE PROCEDURE Registar(IN uti INT, IN nome VARCHAR(45), IN morada varchar(45)
     END //
 Delimiter //
 
-Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22');
-Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11');
+Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22', "BJ1992");
+Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11', "JA1992");
 
 
 
