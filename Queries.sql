@@ -1,91 +1,49 @@
 Use mercado;
 
 -- Ver todos os utilizadores
-SELECT 
-    *
-FROM
-    utilizador;
+SELECT * FROM utilizador;
 
 -- Ver todos os produtos
-SELECT
-    *
-FROM
-    produto;
+SELECT * FROM produto;
 
 -- Ver todos os anuncios disponíveis
-SELECT 
-    *
-FROM
-    produto a
-WHERE
-    a.quantidade > 0;
+SELECT * FROM produto a
+	WHERE a.quantidade > 0;
 
 -- Ver todos os produtos disponiveis para venda ordenados por tipo
-SELECT 
-    *
-FROM
-    produto p
-WHERE
-    p.quantidade > 0
-ORDER BY p.Categoria; 
+SELECT * FROM produto p
+	WHERE p.quantidade > 0
+	ORDER BY p.Categoria; 
 
 -- Ver todos os produtos colocados à venda pelo utilizador 10
-SELECT 
-    *
-FROM
-    produto p,
-    utilizador u
-WHERE
-    u.NIF = p.Utilizador_NIF AND u.NIF = 11;
+SELECT * FROM produto p, utilizador u
+	WHERE u.NIF = p.Utilizador_NIF AND u.NIF = 11;
     
 -- Ver todas as compras do utilizador 2
-SELECT 
-    *
-FROM
-    fatura f,
-    utilizador u
-WHERE
-    u.NIF = f.NIF_comprador AND u.NIF = 2;
+SELECT * FROM fatura f, utilizador u
+	WHERE u.NIF = f.NIF_comprador AND u.NIF = 2;
 
 -- Ver a quantidade que foi vendida o produto 3
-SELECT 
-    SUM(pc.quantidade)
-FROM
-    produto p,
-    Produto_Compra pc
-WHERE
-    p.Id = pc.Produto_Id && p.Id = 3;
+SELECT SUM(pc.quantidade) FROM produto p, Produto_Compra pc
+	WHERE p.Id = pc.Produto_Id && p.Id = 3;
 
 -- Numero de vezes que o produto 3 foi vendido
-SELECT 
-    COUNT(p.Id)
-FROM
-    produto p,
-    Produto_Compra pc
-WHERE
-    p.Id = pc.Produto_Id && p.Id = 3;
+SELECT COUNT(p.Id) FROM produto p, Produto_Compra pc
+	WHERE p.Id = pc.Produto_Id && p.Id = 3;
 
 -- Quanto o cliente 3 faturou
-SELECT 
-    SUM(pc.Quantidade)
-FROM
-    utilizador u,
-    produto p,
-    produto_Compra pc
-WHERE
-    p.Id = 3 && u.NIF = p.Utilizador_NIF
-        && p.Id = pc.Produto_Id;
+SELECT SUM(pc.Quantidade) FROM utilizador u, produto p, produto_Compra pc
+	WHERE p.Id = 3 && u.NIF = p.Utilizador_NIF && p.Id = pc.Produto_Id;
         
 -- Quanto o cliente 3 faturou num intervalo de tempo
-SELECT 
-    pc.Quantidade
-FROM
+SELECT pc.Quantidade 
+	FROM
     utilizador u,
     produto p,
     produto_Compra pc,
     Compra c,
     fatura f
-WHERE
+	WHERE
     p.Id = 3 && u.NIF = p.Utilizador_NIF
         && p.Id = pc.Produto_Id
         && pc.Compra_ID = c.Id
@@ -93,8 +51,7 @@ WHERE
         && f.data BETWEEN '2018-10-01' AND '2018-10-31';
 
 -- Todos os utilizadores que compraram produtos de uma dada categoria
-SELECT 
-    u
+SELECT u 
 FROM
     produto p,
     fatura f,
@@ -109,21 +66,21 @@ WHERE
         && u.NIF = f.NIF_comprador;
 
 -- As 5 compras mais caras do sistema
-SELECT 
-    *
-FROM
-    fatura f
-ORDER BY f.preco DESC
-LIMIT 5;
+SELECT * FROM fatura f 
+	ORDER BY f.preco DESC
+		LIMIT 5;
+
+-- Os 5 utilizadores com mais produtos à venda
+SELECT u.nome, count(u.NIF) from produto p, utilizador u 
+	where u.NIF = p.Utilizador_NIF
+		group by u.NIF
+			Order by count(u.NIF) DESC
+				LIMIT 5;
 
 -- Lista de Faturas do mês de Janeiro de 2018 (VIEW)
 CREATE VIEW Faturas_Janeiro_2018 AS
-    SELECT 
-        *
-    FROM
-        faturas f
-    WHERE
-        f.data BETWEEN '2018-10-01' AND '2018-10-31';
+    SELECT * FROM faturas f
+    WHERE f.data BETWEEN '2018-10-01' AND '2018-10-31';
 
 SELECT * from Faturas_Janeiro_2018;
 
@@ -186,6 +143,15 @@ Delimiter //
 
 Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22');
 Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11');
+
+
+
+
+
+
+
+
+
 
 -- Utilizador coloca um artigo para a venda
 
