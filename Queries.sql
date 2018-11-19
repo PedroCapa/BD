@@ -36,44 +36,44 @@ SELECT SUM(c.preco)
 	FROM
     utilizador u,
     produto p,
-    compra c
+    compra c,
+    carrinho ca
 	WHERE
     u.NIF = 3 AND u.NIF = p.Id
-        AND p.Id = pc.Produto_Id
-        AND pc.Compra_ID = c.Id
-        AND f.data BETWEEN '2018-10-01' AND '2018-10-31';
+        AND p.Id = c.Prod
+        AND ca.Id = c.cart
+        AND ca.data BETWEEN '2018-10-01' AND '2018-10-31';
 
--- Todos os utilizadores que compraram produtos de uma dada categoria
+-- Todos os utilizadores que compraram produtos da categoria Smartphone
 SELECT u 
 FROM
+    utilizador u,
     produto p,
-    fatura f,
-    produto_Compra pc,
     compra c,
-    utilizador u
+    carrinho ca
 WHERE
     p.Categoria = 'Smartphone'
-        && p.Id = pc.Produto_Id
-        && pc.Compra_ID = c.Id
-        && c.Fatura_ID = f.Id
-        && u.NIF = f.NIF_comprador;
+        AND p.Id = c.prod
+        AND ca.Id = c.cart
+        AND u.NIF = ca.NIF;
 
 -- As 5 compras mais caras do sistema
-SELECT * FROM fatura f 
-	ORDER BY f.preco DESC
+SELECT ca.Id, SUM(c.Preco) FROM carrinho ca, compra c
+	GROUP BY ca.Id
+    ORDER BY SUM(ca.Preco) DESC
 		LIMIT 5;
 
 -- Os 5 utilizadores com mais produtos à venda
 SELECT u.nome, count(u.NIF) from produto p, utilizador u 
-	where u.NIF = p.Utilizador_NIF
+	where u.NIF = p.NIF
 		group by u.NIF
 			Order by count(u.NIF) DESC
 				LIMIT 5;
 
--- Lista de Faturas do mês de Janeiro de 2018 (VIEW)
-CREATE VIEW Faturas_Janeiro_2018 AS
-    SELECT * FROM faturas f
-    WHERE f.data BETWEEN '2018-10-01' AND '2018-10-31';
+-- Lista de Carrinhos do mês de Janeiro de 2018 (VIEW)
+CREATE VIEW Carrinho_Janeiro_2018 AS
+    SELECT * FROM carrinho ca
+    WHERE ca.data BETWEEN '2018-10-01' AND '2018-10-31';
 
 SELECT * from Faturas_Janeiro_2018;
 
@@ -82,7 +82,7 @@ Delimiter //
 CREATE PROCEDURE produto_Venda_utilizador(IN uti INT)
 	Begin 
 		select * from produto p
-			where uti = p.Utilizador_NIF;
+			where uti = p.NIF;
     END //
 Delimiter //
 
@@ -107,20 +107,19 @@ SELECT Distinct QuantidadeProdutosN(1) from produto;
 Delimiter // 
 CREATE PROCEDURE gastouUtilizadorPeriodo(IN uti INT, IN begin DATE, IN end DATE)
 	Begin 
-	SELECT SUM(Preco) from fatura f
-		where uti = f.NIF_comprador;
+	SELECT SUM(c.Preco) from carrinho ca, compra c
+		where uti = ca.NIF AND ca.Id = c.cart;
     END //
 Delimiter //
 
 Call gastouUtilizadorPeriodo(11, '1900-01-01', '2020-01-01');
 
 -- Quanto um utilizador recebeu em vendas
-Delimiter // 
+Delimiter //
 CREATE PROCEDURE ganhouUtilizadorPeriodo(IN uti INT)
 	Begin 
-	select Sum(pc.quantidade * p.preco) from (
-		SELECT pc.quantidade, p.preco from produto_compra pc, produto p
-			where uti = f.NIF_comprador && pc.Produto_id = p.Id);
+	select Sum(c.Preco) from produto p, compra c, carrinho ca
+		where uti = p.NIF AND p.Id = c.prod;
     END //
 Delimiter //
 
@@ -128,36 +127,24 @@ Call ganhouUtilizadorPeriodo(10);
 
 -- Registar um utilizador no sistema
 Delimiter // 
-CREATE PROCEDURE Registar(IN uti INT, IN nome VARCHAR(45), IN morada varchar(45), IN nascimento DATE)
+CREATE PROCEDURE Registar(IN uti INT, IN nome VARCHAR(45), IN morada varchar(45), IN nascimento DATE, IN pass varchar(32))
 	Begin 
-	INSERT INTO utilizador Values(uti, nome, morada, nascimento);    
+	INSERT INTO utilizador (NIF, Nome, Morada, DataNascimento, Password) Values(uti, nome, morada, nascimento, pass);
     END //
 Delimiter //
 
-Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22', "BJ1992");
-Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11', "JA1992");
-
-
-
-
-
-
-
-
-
+Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22', 'BJ1992');
+Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11', 'JA1992');
 
 -- Utilizador coloca um artigo para a venda
-
--- Ver mais tarde
 
 Delimiter // 
 CREATE Function AdicionarProduto(designacao VARCHAR(45), descricao VARCHAR(150), preco Int, categoria VARCHAR(30), nif Int, quantidade Int)
 	Returns Int 
     DETERMINISTIC
 		Begin
-			Declare id Int;
-            Set id = (Select (Max(id) + 1) from produto);
-            Insert Into produto Values (id, designacao, descricao, preco, categoria, nif, quantidade);
+            Insert Into produto (Designacao, Descricao, Preco, Categoria, NIF, Quantidade)
+				Values (designacao, descricao, preco, categoria, nif, quantidade);
 		return id;
 		End //
 Delimiter //
