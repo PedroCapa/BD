@@ -17,7 +17,7 @@ SELECT * FROM produto p
 
 -- Ver todos os produtos colocados à venda pelo utilizador 10
 SELECT * FROM produto p, utilizador u
-	WHERE u.NIF = p.Utilizador_NIF AND u.NIF = 11;
+	WHERE u.NIF = p.Utilizador_NIF AND u.NIF = 10;
     
 -- Ver todas as compras do utilizador 2
 SELECT * FROM fatura f, utilizador u
