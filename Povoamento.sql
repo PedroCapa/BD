@@ -1,21 +1,21 @@
 Use mercado;
 
 INSERT INTO utilizador 
-	VALUES(1, 'Lucas Peixoto Silva', 'Rua dos Gritos nº1', '2012-01-17', "LPS2012"),
-		  (2, 'Luís Filipe da Costa Capa', 'Vila Verde', '1998-12-01', "LFCC1998"),
-		  (3, ' Moisés Araújo Antunes', 'Maria da Fonte', '1999-04-14', "MAA1999"),
-		  (4, 'Pedro Miguel da Costa Capa', 'Vila Verde', '1998-12-01', "PMCC1998"),
-          (5, 'Tiago Martins Pinheiro', 'Vila Verde', '1998-08-06', "TMP1998"),
-          (6, 'Moussa Marega', 'Porto', '1991-04-14', "MM1991"),
-          (7, 'Rodrigo Rodrigues', 'Braga', '1900-01-01', "RR1900"),
-          (8, 'Pedro Proença', 'Lisboa', '1970-04-06', "PP1970"),
-          (9, 'Gabriel Toledo', 'New York', '1991-05-30', "GT1991"),
-          (10, 'Epitacio de Melo', 'New York', '1995-07-04', "EM1995"),
-          (11, 'SAMSUNG', ' Seul Coreia do Sul', '1938-01-01', "S1938"),
-          (12, 'Jonas Gonçalves', 'Lisboa', '1986-05-08', "JG1986"),
-          (13, 'Lamborghini', 'Sant Agata Bolognese','1963-10-30', "L1963"),
-          (14, 'Ferrari','	Maranello','1939-09-13', "F1939"),
-          (15, 'Apple', 'California', '1976-04-01', "A1976");
+	VALUES(1, 'Lucas Peixoto Silva', 'Rua dos Gritos nº1', '2012-01-17', 'LPS2012'),
+		  (2, 'Luís Filipe da Costa Capa', 'Vila Verde', '1998-12-01', 'LFCC1998'),
+		  (3, ' Moisés Araújo Antunes', 'Maria da Fonte', '1999-04-14', 'MAA1999'),
+		  (4, 'Pedro Miguel da Costa Capa', 'Vila Verde', '1998-12-01', 'PMCC1998'),
+          (5, 'Tiago Martins Pinheiro', 'Vila Verde', '1998-08-06', 'TMP1998'),
+          (6, 'Moussa Marega', 'Porto', '1991-04-14', 'MM1991'),
+          (7, 'Rodrigo Rodrigues', 'Braga', '1900-01-01', 'RR1900'),
+          (8, 'Pedro Proença', 'Lisboa', '1970-04-06', 'PP1970'),
+          (9, 'Gabriel Toledo', 'New York', '1991-05-30', 'GT1991'),
+          (10, 'Epitacio de Melo', 'New York', '1995-07-04', 'EM1995'),
+          (11, 'SAMSUNG', ' Seul Coreia do Sul', '1938-01-01', 'S1938'),
+          (12, 'Jonas Gonçalves', 'Lisboa', '1986-05-08', 'JG1986'),
+          (13, 'Lamborghini', 'Sant Agata Bolognese','1963-10-30', 'L1963'),
+          (14, 'Ferrari','	Maranello','1939-09-13', '1939'),
+          (15, 'Apple', 'California', '1976-04-01', 'A1976');
           
 INSERT INTO metodospagamento 
 	VALUES (0, 'Cartão de Crédito'),

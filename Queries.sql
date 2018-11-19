@@ -27,28 +27,22 @@ SELECT * FROM carrinho c, utilizador u
 SELECT SUM(c.quantidade) FROM produto p, compra c
 	WHERE p.Id = 3 AND p.Id = c.prod;
 
--- Numero de vezes que o produto 3 foi vendido
-SELECT COUNT(p.Id) FROM produto p, Produto_Compra pc
-	WHERE p.Id = pc.Produto_Id && p.Id = 3;
-
 -- Quanto o cliente 3 faturou
-SELECT SUM(pc.Quantidade) FROM utilizador u, produto p, produto_Compra pc
-	WHERE p.Id = 3 && u.NIF = p.Utilizador_NIF && p.Id = pc.Produto_Id;
+SELECT SUM(c.preco) FROM utilizador u, produto p, compra c
+	WHERE u.NIF = 3 AND u.NIF = p.NIF AND p.Id = c.preco;
         
 -- Quanto o cliente 3 faturou num intervalo de tempo
-SELECT pc.Quantidade 
+SELECT SUM(c.preco)
 	FROM
     utilizador u,
     produto p,
-    produto_Compra pc,
-    Compra c,
-    fatura f
+    compra c
 	WHERE
-    p.Id = 3 && u.NIF = p.Utilizador_NIF
-        && p.Id = pc.Produto_Id
-        && pc.Compra_ID = c.Id
-        && c.Fatura_ID = f.Id
-        && f.data BETWEEN '2018-10-01' AND '2018-10-31';
+    u.NIF = 3 AND u.NIF = p.Id
+        AND p.Id = pc.Produto_Id
+        AND pc.Compra_ID = c.Id
+        AND c.Fatura_ID = f.Id
+        AND f.data BETWEEN '2018-10-01' AND '2018-10-31';
 
 -- Todos os utilizadores que compraram produtos de uma dada categoria
 SELECT u 
