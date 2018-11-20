@@ -89,11 +89,11 @@ INSERT INTO produto (Designacao, Descricao, Preco, Categoria, NIF, Quantidade)
            ('Samsung Galaxy Note9', 'Smartphone preto e novo', '999.99', 'Smartphone', '11', '100');
 
 -- Carrinho
-INSERT INTO carrinho
-	VALUES (1,'2018-11-15','DHL',5),
-		   (2,'2014-01-01','DHL',1),
-		   (3,'2017-06-05','DHL',2),
-           (4,'2018-02-28','DHL',4);
+INSERT INTO carrinho (data, trans, NIF)
+	VALUES ('2018-11-15','DHL',5),
+		   ('2014-01-01','DHL',1),
+		   ('2017-06-05','DHL',2),
+           ('2018-02-28','DHL',4);
 
 -- Compra
 INSERT INTO compra (Quantidade,Cart,Prod)
