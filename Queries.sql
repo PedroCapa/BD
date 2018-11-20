@@ -76,7 +76,6 @@ SELECT u.NIF, u.nome, SUM(c.Preco) from utilizador u, produto p, compra c
 		GROUP BY u.NIF
 			Order by SUM(c.Preco);
 
-
 -- Lista de Carrinhos do mês de Janeiro de 2018 (VIEW)
 CREATE VIEW Carrinho_Janeiro_2018 AS
     SELECT * FROM carrinho ca

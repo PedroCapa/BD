@@ -45,7 +45,7 @@ Call Registar(20, 'Bob Jungles', 'Luxembugo', '1992-09-22', 'BJ1992');
 Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11', 'JA1992');
 
 -- Filtar os produtos de acordo com a pesquisa do utilizador
-Delimiter // 
+Delimiter //
 CREATE PROCEDURE FiltraPesquisa(IN pesq INT)
 	Begin 
 	SELECT * from produto p 
@@ -53,7 +53,7 @@ CREATE PROCEDURE FiltraPesquisa(IN pesq INT)
     END //
 Delimiter //
 
--- Aceder a informações pessoais de todos os utilizadores
+-- Aceder a informações pessoais de um utilizadore
 
 Delimiter //
 Create Procedure InfoUtilizador(IN nif INT)
