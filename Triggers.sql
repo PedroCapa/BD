@@ -1,11 +1,12 @@
 USE mercado;
 
 Delimiter //
-Create Trigger valorCompra AFTER INSERT ON compra
+Create Trigger valorCompra BEFORE INSERT ON compra
 	For Each Row
     Begin
-		Declare precoProduto Decimal(8,2);
-		Select getValorProduto(New.Prod) INTO precoProduto;
+
+		Declare precoProduto Decimal(16,3);
+        Select getValorProduto(New.Prod) INTO precoProduto;
         
         Set New.Preco = New.Quantidade * precoProduto;
 	End //
@@ -22,5 +23,3 @@ BEGIN
     RETURN res;
 END //
 Delimiter //
-
-            
