@@ -41,7 +41,7 @@ Delimiter //
     DETERMINISTIC
     Begin 
 		Declare res INT;
-        Set res = (select NIF from utilizador u, produto p
+        Set res = (select u.NIF from utilizador u, produto p
 					where p.Id = prod AND u.NIF = p.NIF);
         
         return res;
@@ -54,7 +54,7 @@ Delimiter //
     DETERMINISTIC
     Begin 
 		Declare res Int;
-        Set res = (SELECT NIF from utilizador u, carrinho c 
+        Set res = (SELECT u.NIF from utilizador u, carrinho c 
 					WHERE c.Id = id AND u.NIF = c.NIF);
         
         return res;
