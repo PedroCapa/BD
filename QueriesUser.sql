@@ -33,16 +33,6 @@ BEGIN
 END //
 Delimiter //
 
--- Alterar morada utilizador
-Delimiter //
-CREATE PROCEDURE alterarMorada(IN nif INT, IN morada VARCHAR(45))
-BEGIN
-	UPDATE Utilizador u
-	SET u.Morada = morada
-    WHERE u.NIF = nif;
-END
-Delimiter //
-
 -- Alterar password
 Delimiter //
 CREATE PROCEDURE alteraPassword(IN nif INT, IN pass VARCHAR(32))
@@ -59,16 +49,6 @@ CREATE PROCEDURE carregaConta(IN nif INT, IN valor DECIMAL(8,2))
 BEGIN
 	UPDATE Utilizador u
     SET u.Saldo = u.Saldo + valor
-    WHERE u.NIF = nif;
-END //
-Delimiter //
-
--- Levantar dinheiro
-Delimiter //
-CREATE PROCEDURE levantaDinheiro(IN nif INT, IN valor DECIMAL(8,2))
-BEGIN
-	UPDATE Utilizador u
-    SET u.Saldo = u.Saldo - valor
     WHERE u.NIF = nif;
 END //
 Delimiter //
