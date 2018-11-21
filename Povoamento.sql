@@ -3,19 +3,19 @@ Use mercado;
 INSERT INTO utilizador (NIF, Nome, Morada, DataNascimento, password)
 	VALUES(1 , 'Lucas Silva'      , 'Rua dos Gritos'	   , '2012-01-17', 'LPS2012' ),
 		  (2 , 'Luís Capa'        , 'Vila Verde'    	   , '1998-12-01', 'LFCC1998'),
-		  (3 , 'Moisés Antunes'   , 'Maria da Fonte'	   , '1999-04-14', 'MAA1999' ),
+		  (3 , 'Moisés Antunes'   , 'Póvoa de Lanhoso'	   , '1999-04-14', 'MAA1999' ),
 		  (4 , 'Pedro Capa'       , 'Vila Verde'    	   , '1998-12-01', 'PMCC1998'),
           (5 , 'Tiago Pinheiro'   , 'Vila Verde'     	   , '1998-08-06', 'TMP1998' ),
           (6 , 'Moussa Marega'    , 'Porto'				   , '1991-04-14', 'MM1991'  ),
           (7 , 'Rodrigo Rodrigues', 'Braga'				   , '1900-01-01', 'RR1900'  ),
           (8 , 'Pedro Proença'    , 'Lisboa'			   , '1970-04-06', 'PP1970'  ),
-          (9 , 'Gabriel Toledo'   , 'New York'			   , '1991-05-30', 'GT1991'  ),
-          (10, 'Epitacio de Melo' , 'New York'			   , '1995-07-04', 'EM1995'  ),
-          (11, 'SAMSUNG'          , 'Seul, Coreia do Sul'  , '1938-01-01', 'S1938'   ),
+          (9 , 'Gabriel Toledo'   , 'Aveiro'			   , '1991-05-30', 'GT1991'  ),
+          (10, 'Epitacio de Melo' , 'Faro' 			       , '1995-07-04', 'EM1995'  ),
+          (11, 'SAMSUNG'          , 'Leiria'               , '1938-01-01', 'S1938'   ),
           (12, 'Jonas Gonçalves'  , 'Lisboa'			   , '1986-05-08', 'JG1986'  ),
-          (13, 'Lamborghini'      , 'Sant, Agata Bolognese', '1963-10-30', 'L1963'   ),
-          (14, 'Ferrari'          , 'Maranello'			   , '1939-09-13', 'F1939'   ),
-          (15, 'Apple'            , 'California'		   , '1976-04-01', 'A1976'   );
+          (13, 'Lamborghini'      , 'Beja'				   , '1963-10-30', 'L1963'   ),
+          (14, 'Ferrari'          , 'Évora'				   , '1939-09-13', 'F1939'   ),
+          (15, 'Apple'            , 'Coimbra'			   , '1976-04-01', 'A1976'   );
           
 INSERT INTO metodospagamento 
 	VALUES (0, 'Cartão de Crédito'),
@@ -44,26 +44,45 @@ INSERT INTO utilizador_metodosPagamento
 -- Contactos
 INSERT INTO telemovel
 	VALUES('912345678', 1),
+		  ('901000001', 2),
+		  ('901000022', 3),
+		  ('901000333', 4),
           ('922992299', 5),
+		  ('901004444', 6),
           ('999999999', 7),
+		  ('901055555', 8),
           ('987654321', 9),
           ('951668866', 10),
+		  ('901666666', 11),
           ('926222652', 12),
+		  ('907777777', 13),
+		  ('988888888', 14),
           ('901000000', 15);
 
 INSERT INTO email
-	VALUES('lfcc@gmail.com', 2),
+	VALUES('lucas@gmail.com', 1),
+		  ('lfcc@gmail.com', 2),
           ('ma14@hotmail.com', 3),
           ('pmcc@gmail.com', 4),
+          ('tiagop@gmail.com', 5),
           ('maregolo@hotmail.com', 6),
-          ('var@roubo.com', 8),
+          ('rodrirodri@rodri.com', 7),
+          ('var@gmail.com', 8),
+          ('fallen@gmail.com', 9),
+          ('epitacio@hotmail.com', 10),
           ('galaxys7@granada.com', 11),
+          ('jpisc@gmail.com', 12),
           ('carro@luxo.com', 13),
-          ('viatura@dinheiro.com', 14);
+          ('viatura@dinheiro.com', 14),
+          ('apple@hotmail.com', 15);
 
 -- Transportes
 INSERT INTO transporte
-	VALUES ('DHL','Muito rapido e eficaz','12.50',48);
+	VALUES ('DHL','Muito rapido e eficaz','12.50',60),
+		   ('UPS','United Problem Solvers','17.50',36),
+           ('FedEx','Ihe World On Time','20.00',24),
+           ('TNT','','15.00',48),
+           ('Yodel','Your Delivery, Your Call','10.00',72);
 
 -- Produtos
 INSERT INTO produto (Designacao, Descricao, Preco, Categoria, NIF, Quantidade)
