@@ -27,10 +27,10 @@ Delimiter //
 -- Quando se insere uma compra atualiza-se o saldo do cliente, bem como a quantidade dp produto
 
 Delimiter //
-Create Procedure atualizaSaldoQuantidade(IN prod INT, IN vende INT, IN compra INT, IN quant INT, IN preco Decimal(16,3))
+Create Procedure atualizaSaldoQuantidade(IN prod INT, IN Uvende INT, IN Ucompra INT, IN quant INT, IN preco Decimal(16,3))
 	Begin
-		UPDATE utilizador u SET saldo = saldo + preco where u.NIF = vende;
-        UPDATE utilizador u SET saldo = saldo - preco where u.NIF = compra;
+		UPDATE utilizador u SET saldo = saldo + preco where u.NIF = Uvende;
+        UPDATE utilizador u SET saldo = saldo - preco where u.NIF = Ucompra;
         UPDATE produto p SET p.quantidade = p.quantidade - quant where p.Id = prod;
     End //
 Delimiter //
@@ -65,15 +65,35 @@ Delimiter //
 Create Trigger AtualizaSaldo AFTER INSERT ON compra
 	For Each Row
     Begin
-		Declare vende INT;
-        Declare compra INT;
-        Declare precoProduto Decimal(16,3);
+		Declare Uvende INT;
+        Declare Ucompra INT;
+        Declare precoProduto Decimal(16,2);
         
-		Select  NIF_Utilizador_Vende(New.Prod) INTO vende;
-        SELECT  NIF_Utilizador_Compra(New.cart) INTO compra;
+		Select  NIF_Utilizador_Vende(New.Prod) INTO Uvende;
+        SELECT  NIF_Utilizador_Compra(New.cart) INTO Ucompra;
         SELECT  getValorProduto(New.Prod) INTO precoProduto;
         
         Set 	precoProduto = New.Quantidade * precoProduto;
-        Call 	atualizaSaldoQuantidade(New.Prod, vende, compra, New.Quantidade, precoProduto);
+        
+        Call 	atualizaSaldoQuantidade(New.Prod, Uvende, Ucompra, New.Quantidade, precoProduto);
 	End //
+Delimiter //
+
+-- Retirar saldo pelo transporte
+Delimiter //
+Create Procedure retiraCustoTrans(IN nif INT, IN preco Decimal(16,3))
+	Begin
+		UPDATE utilizador u SET saldo = saldo - preco where u.NIF = compra;
+    End //
+Delimiter //
+
+Delimiter //
+Create Trigger retiraCustoTransporte AFTER INSERT ON carrinho
+	For Each ROW
+    Begin
+		Declare preco DECIMAL(16,3);
+        Set preco = (Select t.preco from transporte t, carrinho ca
+						where New.Trans = t.Designacao);
+		Call retiraCustoTrans(New.NIF, preco);
+    End //
 Delimiter //

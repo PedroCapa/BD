@@ -46,13 +46,14 @@ Call Registar(16, 'julian alaphilippe', 'França', '1992-06-11', 'JA1992');
 
 -- Filtar os produtos de acordo com a pesquisa do utilizador
 Delimiter //
-CREATE PROCEDURE FiltraPesquisa(IN pesq INT)
+CREATE PROCEDURE FiltraPesquisa(IN pesq Varchar(50))
 	Begin 
 	SELECT * from produto p 
-		where p.Categoria = pesq OR p.nome = pesq;
+		where p.Categoria = pesq OR p.designacao = pesq;
     END //
 Delimiter //
 
+Call FiltraPesquisa('Arte');
 -- Aceder a informações pessoais de um utilizadore
 
 Delimiter //
@@ -62,3 +63,23 @@ Create Procedure InfoUtilizador(IN nif INT)
 		where nif = u.NIF;
     End //
 Delimiter //
+
+-- Quanto um utilizador recebeu num intervalo de tempo
+Delimiter //
+Create Procedure UtilizadorRecebeuTempo(IN nif INT, In begin DATE, In end DATE)
+	Begin
+    SELECT SUM(c.preco)
+	FROM
+    utilizador u,
+    produto p,
+    compra c,
+    carrinho ca
+	WHERE
+    u.NIF = nif AND nif = p.NIF
+        AND p.Id = c.Prod
+        AND ca.Id = c.cart
+        AND ca.data BETWEEN begin AND end;
+    End //
+Delimiter //
+
+Call UtilizadorRecebeuTempo(1, '2017/01/01', '2018/07/31');

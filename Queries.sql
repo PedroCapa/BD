@@ -74,8 +74,16 @@ SELECT u.nome, count(u.NIF) from produto p, utilizador u
 			Order by count(u.NIF) DESC
 				LIMIT 5;
 
--- Top 5 clientes que mais receberam pelo sistema
+-- Top 5 clientes que mais receberam com o sistema
 SELECT u.NIF, u.nome, SUM(c.Preco) from utilizador u, produto p, compra c 
 	where u.NIF = p.NIF AND p.Id = c.prod
 		GROUP BY u.NIF
 			Order by SUM(c.Preco) DESC;
+            
+Create Index NIFU
+	ON utilizador(NIF, nome);
+
+Drop Index NIFU ON utilizador;
+
+SELECT * from utilizador USE INDEX(NIFU)
+	where saldo = 0;
