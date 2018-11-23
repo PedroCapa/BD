@@ -78,7 +78,8 @@ SELECT u.nome, count(u.NIF) from produto p, utilizador u
 SELECT u.NIF, u.nome, SUM(c.Preco) from utilizador u, produto p, compra c 
 	where u.NIF = p.NIF AND p.Id = c.prod
 		GROUP BY u.NIF
-			Order by SUM(c.Preco) DESC;
+			Order by SUM(c.Preco) DESC
+				LIMIT 5;
             
 Create Index NIFU
 	ON utilizador(NIF, nome);
@@ -87,3 +88,5 @@ Drop Index NIFU ON utilizador;
 
 SELECT * from utilizador USE INDEX(NIFU)
 	where saldo = 0;
+    
+SHOW VARIABLES LIKE 'datadir';
