@@ -60,10 +60,18 @@ Call comprasPessoais(2);
 Delimiter //
 Create Procedure comprasUtilizadores(IN user1 INT, IN user2 INT)
 BEGIN
-	Select c.Id, c.Preco, c.Quantidade, c.Cart, c.Prod, p.Designacao From Utilizador u, Carrinho car, Compra c, Produto p
-		Where p.NIF = user2 AND u.NIF = p.NIF AND c.Prod = p.Id AND c.Cart = car.Id AND car.NIF = user1 
-        OR (p.NIF = user1 AND u.NIF = p.NIF AND c.Prod = p.Id AND c.Cart = car.Id AND car.NIF = user2);
+	Select Distinct c.Id, c.Preco, c.Quantidade, c.Cart, c.Prod, p.Designacao
+		From Utilizador u, Carrinho car, Compra c, Produto p
+			Where p.NIF = user2 
+				AND c.Prod = p.Id 
+				AND c.Cart = car.Id 
+				AND car.NIF = user1 
+				OR 
+				(p.NIF = user1
+				AND c.Prod = p.Id 
+				AND c.Cart = car.Id 
+				AND car.NIF = user2);
 END //
 Delimiter //
 
-Call comprasUtilizadores(5, 4);
+Call comprasUtilizadores(2, 11);
