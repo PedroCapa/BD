@@ -87,7 +87,7 @@ INSERT INTO transporte
 -- Produtos
 INSERT INTO produto (Designacao, Descricao, Preco, Categoria, NIF, Quantidade)
 	VALUES ('Mochila'				 , 'Mochila cinzenta e nova'		   , '29.99' , 'Material escolar'	   , '2' , '10'  ),
-		   ('Relógio'				 , 'Relógio Rolex em ouro'			   , '7000'	 , 'Acessório'		 	   , '5' , '1'   ),
+		   ('Relógio'				 , 'Relógio Rolex em ouro'			   , '7000'	 , 'Acessório'		 	   , '3' , '1'   ),
 		   ('Mesa'					 , 'Mesa Branca'					   , '25'    , 'Móvel'			 	   , '2' , '1'   ),
            ('Caderno'				 , 'Caderno de linhas'				   , '0.99'  , 'Material escolar'	   , '3' , '50'  ),
            ('Quadro Mona Lisa'		 , 'Mona Lisa, de Leonardo da Vinci'   , '1000'  , 'Arte'			 	   , '6' , '1'   ),
@@ -96,7 +96,7 @@ INSERT INTO produto (Designacao, Descricao, Preco, Categoria, NIF, Quantidade)
            ('Camisola'				 , 'Camisola de Portugal'			   , '79.99' , 'Equipamento desportivo', '8' , '1'   ),
            ('Cachecol'				 , 'Cachecol de FPF'				   , '19.89' , 'Vestuário'			   , '6' , '5'   ),
            ('Borracha'				 , 'Borracha branca da marca STAEDTLER', '0.45'  , 'Material escolar'	   , '2' , '20'  ),
-           ('Carteira'				 , 'Carteira Tommy Hilfiger'	       , '150'	 , 'Acessório'		       , '5' , '3'   ),
+           ('Carteira'				 , 'Carteira Tommy Hilfiger'	       , '150'	 , 'Acessório'		       , '3' , '3'   ),
            ('Busto Cristiano Ronaldo', 'Miniatura do busto original'       , '1.99'  , 'Arte'				   , '5' , '1'   ),
            ('Camisola'				 , 'Camisola azul e branca'	           , '79.99' , 'Vestuário'			   , '5' , '3'   ),
            ('Caneta de minas'		 , 'Lapiseira Rotring'			       , '0.7'   , 'Material escolar'	   , '6' , '5'   ),
