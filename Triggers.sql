@@ -83,7 +83,7 @@ Delimiter //
 Delimiter //
 Create Procedure retiraCustoTrans(IN nif INT, IN preco Decimal(16,3))
 	Begin
-		UPDATE utilizador u SET saldo = saldo - preco where u.NIF = compra;
+		UPDATE utilizador u SET saldo = saldo - preco where u.NIF = nif;
     End //
 Delimiter //
 
@@ -92,8 +92,8 @@ Create Trigger retiraCustoTransporte AFTER INSERT ON carrinho
 	For Each ROW
     Begin
 		Declare preco DECIMAL(16,3);
-        Set preco = (Select t.preco from transporte t, carrinho ca
-						where New.Trans = t.Designacao);
+        Set preco = (Select t.custo from transporte t, carrinho ca
+						where New.Trans = t.Designacao AND ca.Id = New.Id);
 		Call retiraCustoTrans(New.NIF, preco);
     End //
 Delimiter //
