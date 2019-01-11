@@ -1,7 +1,7 @@
 package Classes;
 import java.util.Objects;
 
-public Class Compra {
+public class Compra {
 
 	private int id;
 	private float preco;
@@ -97,6 +97,6 @@ public Class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" + "id=" + id + ", preco=" + preco + ", quantidade=" + quantidade +  ", carrinho=" + cart + ", produto=" + prod'}';
+        return "Compra{" + "id=" + id + ", preco=" + preco + ", quantidade=" + quantidade +  ", carrinho=" + cart + ", produto=" + prod + '}';
     }
 }

@@ -1,6 +1,6 @@
-package CompraDAO;
+package ClassesDAO;
 
-import Classes.Compra;
+import Classes.*;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 public class CompraDAO {
 
@@ -21,8 +22,7 @@ public class CompraDAO {
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-
-    @Override
+    
     public Set<Entry<Integer, Utilizador>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -37,21 +37,20 @@ public class CompraDAO {
         return compras;
     }
     
-    public Set<String> keySet() {
+    public Set<Integer> keySet() {
         try{
-            Set<String> ids = new HashSet<>();
+            Set<Integer> ids = new HashSet<>();
             Statement st = conn.createStatement();
             String str = "Select id From Compra";
             ResultSet res = st.executeQuery(str);
             while(res.next()){
-                ids.add(res.getString("id"));
+                ids.add(Integer.valueOf(res.getString("id")));
             }
             return ids;
         }
         catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
     }
     
-    @Override
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -79,10 +78,10 @@ public class CompraDAO {
                 compra.setId(rs.getInt("id"));
                 compra.setPreco(rs.getFloat("Preco"));
                 compra.setQuantidade(rs.getInt("Quantidade"));
-                compra.setCart(rs.getString("Carrinho"));
-                compra.setProd(rs.getString("Produto"));
+                compra.setCart(Integer.valueOf(rs.getString("Carrinho")));
+                compra.setProd(Integer.valueOf(rs.getString("Produto")));
             }
-            return produto;
+            return compra;
         }
         catch (NumberFormatException | SQLException e) {throw new NullPointerException(e.getMessage());}
     }
