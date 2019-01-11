@@ -1,0 +1,118 @@
+package CompraDAO;
+
+import Classes.Compra;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
+import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class CompraDAO {
+
+    private Connection conn;
+    
+    public CompraDAO(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user=LFCC&password=55luis14&useSSL=false";
+            this.conn = DriverManager.getConnection(connectionUrl);
+        }
+        catch(ClassNotFoundException | SQLException exc){}
+    }
+
+    @Override
+    public Set<Entry<Integer, Utilizador>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Collection<Compra> values(){
+        Collection<Compra> compras = new HashSet<>();
+        Set<Integer> keys = keySet();
+        for(Integer i: keys){
+            Compra com = this.get(i);
+            compras.add(com);
+        }
+        return compras;
+    }
+    
+    public Set<String> keySet() {
+        try{
+            Set<String> ids = new HashSet<>();
+            Statement st = conn.createStatement();
+            String str = "Select id From Compra";
+            ResultSet res = st.executeQuery(str);
+            while(res.next()){
+                ids.add(res.getString("id"));
+            }
+            return ids;
+        }
+        catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
+    }
+    
+    @Override
+    public void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Compra put(int key, Compra value) {
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "INSERT INTO Compra (id, preco, quantidade, cart, prod) VALUES ";
+            sql += "("+value.getId()+",";
+            sql += "'" +value.getPreco()+",'"+value.getQuantidade()+"','"+value.getCart()+"','"+value.getProd()+"', '" + "')";
+            int i  = stm.executeUpdate(sql);
+            return new Compra(value);
+        }
+        catch (SQLException e) {throw new NullPointerException(e.getMessage());}
+    }
+    
+    public Compra get(Object key) {
+        try {
+            Compra compra = null;
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Compra WHERE id='"+(String)key+"'";
+            ResultSet rs = stm.executeQuery(sql);
+            if (rs.next()){
+                compra = new Compra();
+                compra.setId(rs.getInt("id"));
+                compra.setPreco(rs.getFloat("Preco"));
+                compra.setQuantidade(rs.getInt("Quantidade"));
+                compra.setCart(rs.getString("Carrinho"));
+                compra.setProd(rs.getString("Produto"));
+            }
+            return produto;
+        }
+        catch (NumberFormatException | SQLException e) {throw new NullPointerException(e.getMessage());}
+    }
+
+    public boolean containsKey(Object key){
+        try{    
+            Statement stm = conn.createStatement();
+            String sql = "SELECT * FROM Compra WHERE id='"+(String)key+"'";
+            ResultSet rs = stm.executeQuery(sql);
+            return rs.next();
+        }
+        catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
+    }
+    public boolean isEmpty(){
+        try {
+            Statement stm = conn.createStatement();
+            String sql = "SELECT id FROM Compra";
+            ResultSet rs = stm.executeQuery(sql);
+            return rs.next();
+        } catch (SQLException exc) {throw new NullPointerException(exc.getMessage());}
+    }
+    
+    public int size() {
+        try {
+            int i = 0;
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT id FROM Compra");
+            for (;rs.next();i++);
+            return i;
+        }
+        catch (SQLException e) {throw new NullPointerException(e.getMessage());}
+    }
+}
