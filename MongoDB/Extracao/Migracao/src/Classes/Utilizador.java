@@ -186,6 +186,6 @@ public class Utilizador {
 
     @Override
     public String toString() {
-        return "Utilizador{" + "nif=" + nif + ", morada=" + morada + ", nome=" + nome + ", password=" + password + ", nascimento=" + nascimento + ", saldo=" + saldo + ", emails=" + emails + ", pagamentos=" + pagamentos + ", contas=" + contas + ", tlm=" + tlm + '}';
+        return "Utilizador{" + "nif=" + nif + ", morada=" + morada + ", nome=" + nome + ", password=" + password + ", nascimento=" + nascimento + ", saldo=" + saldo + ", emails=" + emails + ", pagamentos=" + pagamentos + ", contas=" + contas + ", tlm=" + tlm + '}' + '\n';
     }
 }

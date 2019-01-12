@@ -97,6 +97,6 @@ public class Compra {
 
     @Override
     public String toString() {
-        return "Compra{" + "id=" + id + ", preco=" + preco + ", quantidade=" + quantidade +  ", carrinho=" + cart + ", produto=" + prod + '}';
+        return "Compra{" + "id=" + id + ", preco=" + preco + ", quantidade=" + quantidade +  ", carrinho=" + cart + ", produto=" + prod + '}' + '\n';
     }
 }
