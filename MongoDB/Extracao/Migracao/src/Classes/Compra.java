@@ -1,31 +1,32 @@
 package Classes;
+
 import java.util.Objects;
 
 public class Compra {
 
-	private int id;
-	private float preco;
-	private int quantidade;
-	private int cart;
-	private int prod;
+    private int id;
+    private float preco;
+    private int quantidade;
+    private int cart;
+    private int prod;
 
-	public Compra(int id, float preco, int quantidade, int cart, int prod) {
-		this.id = id;
-		this.preco = preco;
-		this.quantidade = quantidade;
-		this.cart = cart;
-		this.prod = prod;
-	}
+    public Compra(int id, float preco, int quantidade, int cart, int prod) {
+        this.id = id;
+        this.preco = preco;
+        this.quantidade = quantidade;
+        this.cart = cart;
+        this.prod = prod;
+    }
 
-	public Compra(){
-		this.id = 0;
-		this.preco = 0;
-		this.quantidade = 0;
-		this.cart = 0;
-		this.prod = 0;	
-	}
+    public Compra(){
+        this.id = 0;
+        this.preco = 0;
+        this.quantidade = 0;
+        this.cart = 0;
+        this.prod = 0;  
+    }
 
-	public Compra(Compra umaCompra){
+    public Compra(Compra umaCompra){
         this.id = umaCompra.getId();
         this.preco = umaCompra.getPreco();
         this.quantidade = umaCompra.getQuantidade();

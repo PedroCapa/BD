@@ -4,20 +4,20 @@ import java.util.Objects;
 
 public class MetodosPagamento {
 
-	private String id;
-	private String designacao;
+    private String id;
+    private String designacao;
 
-	public MetodosPagamento(){
-		id = "";
-		designacao = "";
-	}
+    public MetodosPagamento(){
+        id = "";
+        designacao = "";
+    }
 
-	public MetodosPagamento(String id, String designacao){
-		this.id = id;
-		this.designacao = designacao;
-	}
+    public MetodosPagamento(String id, String designacao){
+        this.id = id;
+        this.designacao = designacao;
+    }
 
-	public MetodosPagamento(MetodosPagamento umMetodo){
+    public MetodosPagamento(MetodosPagamento umMetodo){
         this.id = umMetodo.getId();
         this.designacao = umMetodo.getDesignacao();
     }
@@ -31,11 +31,11 @@ public class MetodosPagamento {
     }
 
     public String getDesignacao() {
-    	return designacao;
+        return designacao;
     }
 
     public void setDesignacao(String designacao){
-    	this.designacao = designacao;
+        this.designacao = designacao;
     }
 
     @Override
