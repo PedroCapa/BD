@@ -1,19 +1,21 @@
-import java.time.LocalDateTime;
+package Classes;
+import java.time.LocalDate;
+
 
 public class Carrinho {
     private int id;
-    private LocalDateTime data;
+    private LocalDate data;
     private long nif;
     private int idTransporte;
 
     public Carrinho() {
         this.id = 0;
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
         this.nif = 0;
         this.idTransporte = 0;
     }
 
-    public Carrinho(int id, LocalDateTime data, long nif, int idTransporte) {
+    public Carrinho(int id, LocalDate data, long nif, int idTransporte) {
         this.id = id;
         this.data = data;
         this.nif = nif;
@@ -31,7 +33,7 @@ public class Carrinho {
         return this.id;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return this.data;
     }
 
@@ -47,7 +49,7 @@ public class Carrinho {
         this.id = id;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
  

@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Objects;
+
 public class MetodosPagamento {
 
 	private String id;
@@ -38,7 +40,10 @@ public class MetodosPagamento {
 
     @Override
     public int hashCode() {
-        return this.id;
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.designacao);
+        return hash;
     }
 
     @Override

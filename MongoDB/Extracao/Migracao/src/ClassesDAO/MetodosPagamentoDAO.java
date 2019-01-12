@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-public Class MetodosPagamentoDAO {
+public class MetodosPagamentoDAO {
 
 	private Connection conn;
 
