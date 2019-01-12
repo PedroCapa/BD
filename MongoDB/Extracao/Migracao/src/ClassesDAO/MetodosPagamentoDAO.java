@@ -12,16 +12,16 @@ import java.util.Map.Entry;
 
 public class MetodosPagamentoDAO {
 
-	private Connection conn;
+    private Connection conn;
 
-	public MetodosPagamentoDAO(String userName, String pass){
+    public MetodosPagamentoDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String connectionUrl = "jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}
-	}
+    }
 
     public Collection<MetodosPagamento> values(){
         Collection<MetodosPagamento> metodosPagamento = new HashSet<>();
@@ -32,7 +32,7 @@ public class MetodosPagamentoDAO {
         }
         return metodosPagamento;
     }
-    
+
     public Set<String> keySet() {
         try{
             Set<String> ids = new HashSet<>();
@@ -47,7 +47,7 @@ public class MetodosPagamentoDAO {
         catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
     }
 
-	public MetodosPagamento get(Object key) {
+    public MetodosPagamento get(Object key) {
         try {
             MetodosPagamento metodosPagamento = null;
             Statement stm = conn.createStatement();
@@ -62,6 +62,4 @@ public class MetodosPagamentoDAO {
         }
         catch (NumberFormatException | SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-
-
 }

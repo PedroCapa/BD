@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClassesDAO;
+
 import Classes.Carrinho;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,10 +13,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class CarrinhoDAO implements Map<Integer, Carrinho>{
-    
+
     private Connection conn;
     private String userName, pass;
-    
+
     public CarrinhoDAO(String userName, String pass){
         try{
             this.userName = userName;
@@ -30,7 +26,7 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-    
+
     @Override
     public int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -125,5 +121,4 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
     public Set<Entry<Integer, Carrinho>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

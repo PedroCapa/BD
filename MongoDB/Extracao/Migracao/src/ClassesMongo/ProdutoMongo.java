@@ -1,6 +1,6 @@
 package ClassesMongo;
 
-import Classes.*;
+import Classes.Produto;
 import java.util.Set;
 import com.mongodb.client.*;
 import org.bson.Document;
@@ -8,12 +8,12 @@ import org.bson.Document;
 public class ProdutoMongo {
     private Set<Produto> produtos;
     private MongoDatabase db;
-    
+
     public ProdutoMongo(Set<Produto> produtos, MongoDatabase db){
         this.produtos = produtos;
         this.db = db;
     }
-    
+
     public void insereCollection(){
         MongoCollection<Document> produto = this.db.getCollection("Produto");
         

@@ -91,7 +91,7 @@ public class Compra {
         return (this.id == other.getId() && this.preco == other.getPreco() && this.quantidade == other.getQuantidade() && 
                 this.cart == other.getCart() && this.prod == other.getProd());
     }
-    
+
     public Compra clone(){
         return new Compra (this);
     }

@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClassesDAO;
+
 import Classes.Transporte;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +11,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-/**
- *
- * @author Luis
- */
+
 public class TransporteDAO implements Map<String, Transporte>{
 
-    private Connection conn;    
+    private Connection conn;
+
     public TransporteDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -30,7 +24,7 @@ public class TransporteDAO implements Map<String, Transporte>{
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-    
+
     @Override
     public int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -80,8 +74,6 @@ public class TransporteDAO implements Map<String, Transporte>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-
     @Override
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -122,5 +114,4 @@ public class TransporteDAO implements Map<String, Transporte>{
     public void putAll(Map<? extends String, ? extends Transporte> map) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

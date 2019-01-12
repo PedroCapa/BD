@@ -5,14 +5,14 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class Transformacao {
-    
+
     private Set<Carrinho> carrinhos;
     private Set<Compra> compras;
     private Set<MetodosPagamento> metodos;
     private Set<Produto> produtos;
     private Set<Transporte> transportes;
     private Set<Utilizador> utilizadores;
-    
+
     public Transformacao() {
         this.carrinhos = new HashSet<>();
         this.compras = new HashSet<>();
@@ -69,7 +69,7 @@ public class Transformacao {
     public void setUtilizadores(Set<Utilizador> utilizadores) {
         this.utilizadores = new HashSet<>(utilizadores);
     }
-    
+
     public void getThemAll(CarrinhoDAO carrinho, CompraDAO compra, MetodosPagamentoDAO metodos, ProdutoDAO produtos, TransporteDAO transporte, UtilizadorDAO utilizadores){
         this.carrinhos = (Set<Carrinho>) carrinho.values();
         this.compras = (Set<Compra>) compra.values();

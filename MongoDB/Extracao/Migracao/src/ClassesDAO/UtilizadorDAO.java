@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClassesDAO;
+
 import Classes.Utilizador;
 import java.util.Collection;
 import java.util.Map;
@@ -12,14 +8,11 @@ import java.util.HashSet;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
-/**
- *
- * @author Luis
- */
+
 public class UtilizadorDAO implements Map<Integer, Utilizador>{
 
     private Connection conn;
-    
+
     public UtilizadorDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -28,7 +21,7 @@ public class UtilizadorDAO implements Map<Integer, Utilizador>{
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-    
+
     @Override
     public int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -144,7 +137,4 @@ public class UtilizadorDAO implements Map<Integer, Utilizador>{
     public Set<Entry<Integer, Utilizador>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
 }

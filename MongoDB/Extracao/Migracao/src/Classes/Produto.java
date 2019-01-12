@@ -28,7 +28,7 @@ public class Produto {
         this.nif = 0;
         this.quantidade = 0;
     }
-    
+
     public Produto(Produto umProduto){
         this.id = umProduto.getId();
         this.designacao = umProduto.getDesignacao();
@@ -112,7 +112,7 @@ public class Produto {
                 this.quantidade == other.getQuantidade() && this.designacao.equals(other.getDesignacao()) && 
                 this.descricao.equals(other.getDescricao()) && this.categoria.equals(other.getCategoria()));
     }
-    
+
     public Produto clone(){
         return new Produto (this);
     }

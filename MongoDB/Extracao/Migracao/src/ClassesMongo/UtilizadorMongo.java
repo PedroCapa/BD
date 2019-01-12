@@ -8,12 +8,12 @@ import org.bson.Document;
 public class UtilizadorMongo {
     private Set<Utilizador> utilizadores;
     private MongoDatabase db;
-    
+
     public UtilizadorMongo(Set<Utilizador> utilizadores, MongoDatabase db){
         this.utilizadores = utilizadores;
         this.db = db;
     }
-    
+
     public void insereCollection(){
         MongoCollection<Document> utilizador = this.db.getCollection("Utilizador");
         for(Utilizador u: this.utilizadores){

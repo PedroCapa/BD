@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class ProdutoDAO {
     private Connection conn;
-    
+
     public ProdutoDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -23,7 +23,7 @@ public class ProdutoDAO {
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-    
+
     public Set<Map.Entry<String,Produto>> entrySet() {
         throw new NullPointerException("public Set<Map.Entry<String,Carro>> entrySet() not implemented!");
     }
@@ -37,7 +37,7 @@ public class ProdutoDAO {
         }
         return produtos;
     }
-    
+
     public Set<String> keySet() {
         try{
             Set<String> ids = new HashSet<>();
@@ -51,7 +51,7 @@ public class ProdutoDAO {
         }
         catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
     }
-    
+
     public void clear(){
         try {
             Statement stm = conn.createStatement();
@@ -60,11 +60,11 @@ public class ProdutoDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public void putAll(Map<? extends String,? extends Produto> t) {
         throw new NullPointerException("Not implemented!");
     }
-    
+
     public Produto remove(Object key) {
         try {
             String chave = (String)key;
@@ -79,7 +79,7 @@ public class ProdutoDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public Produto put(int key, Produto value) {
         try {
             Statement stm = conn.createStatement();
@@ -91,7 +91,7 @@ public class ProdutoDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public Produto get(Object key) {
         try {
             Produto produto = null;
@@ -112,7 +112,7 @@ public class ProdutoDAO {
         }
         catch (NumberFormatException | SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public boolean containsKey(Object key){
         try{    
             Statement stm = conn.createStatement();
@@ -122,11 +122,11 @@ public class ProdutoDAO {
         }
         catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
     }
-    
+
     public boolean containsValue(Object value) {
         throw new NullPointerException("public boolean containsValue(Object value) not implemented!");
     }
-    
+
     public boolean isEmpty(){
         try {
             Statement stm = conn.createStatement();
@@ -135,7 +135,7 @@ public class ProdutoDAO {
             return rs.next();
         } catch (SQLException exc) {throw new NullPointerException(exc.getMessage());}
     }
-    
+
     public int size() {
         try {
             int i = 0;
@@ -146,7 +146,7 @@ public class ProdutoDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public void update(Produto produto){
         try {
             int id = produto.getId();
@@ -155,7 +155,7 @@ public class ProdutoDAO {
             Statement stm = conn.createStatement();
         } catch (SQLException ex) {throw new NullPointerException(ex.getMessage());}
     }
-    
+
     public void updateAll(List<Produto> produtos){
         for(Produto c: produtos){
             this.update(c);

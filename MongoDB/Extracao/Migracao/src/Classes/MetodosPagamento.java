@@ -57,7 +57,7 @@ public class MetodosPagamento {
          other = (MetodosPagamento) obj;
         return (this.id.equals(other.getId()) && this.designacao.equals(other.getDesignacao()));
     }
-    
+
     public MetodosPagamento clone(){
         return new MetodosPagamento (this);
     }
@@ -66,5 +66,4 @@ public class MetodosPagamento {
     public String toString() {
         return "Método de Pagamento{" + "id=" + id + ", designacao=" + designacao + '}' + '\n';
     }
-
 }

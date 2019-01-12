@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class CompraDAO {
 
     private Connection conn;
-    
+
     public CompraDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -24,7 +24,7 @@ public class CompraDAO {
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
-    
+
     public Set<Entry<Integer, Utilizador>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -38,7 +38,7 @@ public class CompraDAO {
         }
         return compras;
     }
-    
+
     public Set<Integer> keySet() {
         try{
             Set<Integer> ids = new HashSet<>();
@@ -52,7 +52,7 @@ public class CompraDAO {
         }
         catch(SQLException exc){throw new NullPointerException(exc.getMessage());}
     }
-    
+
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -68,7 +68,7 @@ public class CompraDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public Compra get(Object key) {
         try {
             Compra compra = null;
@@ -105,7 +105,7 @@ public class CompraDAO {
             return rs.next();
         } catch (SQLException exc) {throw new NullPointerException(exc.getMessage());}
     }
-    
+
     public int size() {
         try {
             int i = 0;
@@ -116,7 +116,7 @@ public class CompraDAO {
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
     }
-    
+
     public void getCompra(Carrinho carrinho){
         try {
             int idCarrinho = carrinho.getId();
