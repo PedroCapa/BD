@@ -39,6 +39,11 @@ public class Migracao {
 
             ProdutoMongo pm = new ProdutoMongo((Set<Produto>)proDAO.values(), mc.getDatabase("Mercado"));
             pm.insereCollection();
+            TransporteMongo tm = new TransporteMongo((Set<Transporte>)traDAO.values(), mc.getDatabase("Mercado"));
+            tm.insereCollection();
+            UtilizadorMongo um = new UtilizadorMongo((Set<Utilizador>)userDAO.values(), mc.getDatabase("Mercado"));
+            um.insereCollection();
+            
         }
         catch(Exception e) {
             System.out.println(e);

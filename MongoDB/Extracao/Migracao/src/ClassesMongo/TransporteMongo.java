@@ -2,10 +2,7 @@ package ClassesMongo;
 
 import Classes.*;
 import java.util.Set;
-import com.mongodb.*;
 import com.mongodb.client.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bson.Document;
 
 public class TransporteMongo {
@@ -19,13 +16,14 @@ public class TransporteMongo {
     
     public void insereCollection(){
         MongoCollection<Document> transporte = this.db.getCollection("Transporte");
-        Document document = new Document();
-        for(Transporte t: this.transportes)
-            document = new Document() 
-                                .append("Designacao", t.getDesignacao()) 
-                                .append("Descricao", t.getDescricao()) 
-                                .append("Custo", t.getCusto())
-                                .append("Data", t.getData());
-                                transporte.insertOne(document);
+        for(Transporte t: this.transportes){
+            System.out.println(t);
+            Document document = new Document();
+            document.append("Designacao", t.getDesignacao()) 
+                    .append("Descricao", t.getDescricao()) 
+                    .append("Custo", t.getCusto())
+                    .append("Data", t.getData());
+            transporte.insertOne(document);
+        }
     }
 }
