@@ -22,9 +22,12 @@ import java.util.Set;
 public class CarrinhoDAO implements Map<Integer, Carrinho>{
     
     private Connection conn;
+    private String userName, pass;
     
     public CarrinhoDAO(String userName, String pass){
         try{
+            this.userName = userName;
+            this.pass = pass;
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection("jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false");
         }
@@ -67,6 +70,8 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
                 String s = o.toString();
                 LocalDate data = LocalDate.parse(s);
                 carrinho.setData(data);
+                CompraDAO compraDAO = new CompraDAO(this.userName, this.pass);
+                compraDAO.getCompra(carrinho);
             }
             return carrinho;
         }

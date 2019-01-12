@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CompraDAO {
 
@@ -113,5 +115,19 @@ public class CompraDAO {
             return i;
         }
         catch (SQLException e) {throw new NullPointerException(e.getMessage());}
+    }
+    
+    public void getCompra(Carrinho carrinho){
+        try {
+            int idCarrinho = carrinho.getId();
+            String sql = "Select Id From Compra Where Cart="+idCarrinho;
+            Statement stm = conn.createStatement();
+            ResultSet res = stm.executeQuery(sql);
+            List<Integer> idCompras = new ArrayList<>();
+            while(res.next()){
+                idCompras.add(res.getInt("Id"));
+            }
+            carrinho.setCompras(idCompras);
+        } catch (SQLException ex) {}
     }
 }

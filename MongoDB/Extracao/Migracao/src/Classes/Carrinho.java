@@ -1,5 +1,7 @@
 package Classes;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Carrinho {
@@ -7,19 +9,22 @@ public class Carrinho {
     private LocalDate data;
     private long nif;
     private String idTransporte;
+    private List<Integer> compras;
 
     public Carrinho() {
         this.id = 0;
         this.data = LocalDate.now();
         this.nif = 0;
         this.idTransporte = "";
+        this.compras = new ArrayList<>();
     }
 
-    public Carrinho(int id, LocalDate data, long nif, String idTransporte) {
+    public Carrinho(int id, LocalDate data, long nif, String idTransporte, List<Integer> compras) {
         this.id = id;
         this.data = data;
         this.nif = nif;
         this.idTransporte = idTransporte;
+        this.compras = compras;
     }
 
     public Carrinho(Carrinho c) {
@@ -27,10 +32,15 @@ public class Carrinho {
         this.data = c.getData();
         this.nif = c.getNif();
         this.idTransporte = c.getIdTransporte();
+        this.compras = c.getCompras();
     }
 
     public int getId() {
         return this.id;
+    }
+
+    public List<Integer> getCompras() {
+        return compras;
     }
 
     public LocalDate getData() {
@@ -57,6 +67,10 @@ public class Carrinho {
         this.nif = nif;
     }
 
+    public void setCompras(List<Integer> compras) {
+        this.compras = compras;
+    }
+
     public void setIdTransporte(String idTransporte) {
         this.idTransporte = idTransporte;
     }
@@ -67,6 +81,7 @@ public class Carrinho {
 
     public String toString() {
         return "Id:" + this.id + "\nData: " + this.data +
-               "\nNif: " + this.nif + "\nIdTransporte:" + this.idTransporte;
+               "\nNif: " + this.nif + "\nIdTransporte:" + this.idTransporte
+                + "\nCompras:"+ this.compras;
     }
 }
