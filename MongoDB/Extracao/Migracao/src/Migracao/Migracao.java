@@ -10,6 +10,34 @@ public class Migracao {
 
     public static void main(String[] args) {
         try {
+
+            String userName = args[0];
+            String pass = args[1];
+
+            Transformacao t = new Transformocao();
+
+            // Vai buscar à base dados MySql
+            CarrinhoDAO carDAO = new CarrinhoDAO(userName, pass);
+            CompraDAO comDAO = new CompraDAO(userName, pass);
+            MetodosPagamentoDAO mpDAO = new MetodosPagamentoDAO(userName, pass);
+            ProdutoDAO proDAO = new ProdutoDAO(userName, pass);
+            TransporteDAO traDAO = new TransporteDAO(userName, pass);
+            UtilizadorDAO userDAO = new UtilizadorDAO(userName, pass);
+
+            t.getThemAll(carDAO, comDao, mpDAO, proDAO, traDAO, userDAO);
+
+            System.out.println(t.getCarrinho());
+    
+            /*
+            compras.forEach((compra) -> {System.out.println(compra);});
+            pagamentos.forEach((pag) -> {System.out.println(pag);});
+            produtos.forEach((prod) -> {System.out.println(prod);});
+            transportes.forEach((trans) -> {System.out.println(trans);});
+            utilizadores.forEach((users) -> {System.out.println(users);});
+            */
+
+            // Mongo SHARE
+            /*
             Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
             mongoLogger.setLevel(Level.SEVERE); 
                 
@@ -38,10 +66,10 @@ public class Migracao {
                                 .append("by", "tutorials point");  
                                 carrinho.insertOne(document); 
                                 System.out.println("Document inserted successfully");
+            */
         }
-        catch(Exception e){
+        catch(Exception e) {
             System.out.println(e);
         }
-        
-    }    
+    }
 }

@@ -1,15 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import ClassesDAO.*;
 import Classes.*;
 import java.util.Collection;
-/**
- *
- * @author Luis
- */
+
 public class Main {
     
     public static void main(String [] args){
@@ -17,6 +9,9 @@ public class Main {
         String userName = args[0];
         String pass = args[1];
         
+        new Transformocao;
+
+        // Vai buscar à base dados MySql
         CarrinhoDAO carDAO = new CarrinhoDAO(userName, pass);
         CompraDAO comDAO = new CompraDAO(userName, pass);
         MetodosPagamentoDAO mpDAO = new MetodosPagamentoDAO(userName, pass);
