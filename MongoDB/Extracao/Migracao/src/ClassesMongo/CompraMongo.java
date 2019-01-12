@@ -1,3 +1,6 @@
+
+import java.util.Set;
+/*
 public class CompraMongo {
 	private Set<Compra> compra;
 	private MongoDatabase db;
@@ -11,4 +14,4 @@ public class CompraMongo {
 		
 	}
 	
-}
+}*/

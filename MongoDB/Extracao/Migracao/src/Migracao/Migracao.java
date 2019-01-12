@@ -1,9 +1,12 @@
 package Migracao;
 
+import Classes.Produto;
 import Classes.Transformacao;
 import ClassesDAO.*;
+import ClassesMongo.ProdutoMongo;
 import com.mongodb.*;
 import com.mongodb.client.*;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
@@ -27,8 +30,8 @@ public class Migracao {
 
             t.getThemAll(carDAO, comDAO, mpDAO, proDAO, traDAO, userDAO);
 
-            System.out.println(t.getCarrinhos());
-            System.out.println(t.getUtilizadores());
+            //System.out.println(t.getCarrinhos());
+            //System.out.println(t.getUtilizadores());
     
             /*
             compras.forEach((compra) -> {System.out.println(compra);});
@@ -39,7 +42,6 @@ public class Migracao {
             */
 
             // Mongo SHARE
-            /*
             Logger mongoLogger = Logger.getLogger( "org.mongodb.driver" );
             mongoLogger.setLevel(Level.SEVERE); 
                 
@@ -47,19 +49,22 @@ public class Migracao {
             MongoDatabase db = mc.getDatabase("Mercado");
             System.out.println("Conectado ao MongoDB");
 
-            MongoCollection<Document> carrinho = db.getCollection("Carrinho"); 
-            System.out.println("Tenho um carrinho."); 
-            MongoCollection<Document> produto = db.getCollection("Produto"); 
-            System.out.println("Tenho um produto."); 
-            MongoCollection<Document> transporte = db.getCollection("Transporte"); 
-            System.out.println("Tenho um transporte.");
-            MongoCollection<Document> compra = db.getCollection("Compra"); 
-            System.out.println("Tenho uma compra."); 
-            MongoCollection<Document> utilizador = db.getCollection("Utilizador"); 
-            System.out.println("Tenho um utilizador.");
-            MongoCollection<Document> metodos = db.getCollection("Metodos_Pagamento"); 
-            System.out.println("Tenho metodos de pagamento.");
-
+            //MongoCollection<Document> carrinho = db.getCollection("Carrinho"); 
+            //System.out.println("Tenho um carrinho."); 
+           // MongoCollection<Document> produto = db.getCollection("Produto"); 
+            //System.out.println("Tenho um produto."); 
+            //MongoCollection<Document> transporte = db.getCollection("Transporte"); 
+            //System.out.println("Tenho um transporte.");
+            //MongoCollection<Document> compra = db.getCollection("Compra"); 
+            //System.out.println("Tenho uma compra."); 
+            //MongoCollection<Document> utilizador = db.getCollection("Utilizador"); 
+            //System.out.println("Tenho um utilizador.");
+            //MongoCollection<Document> metodos = db.getCollection("Metodos_Pagamento"); 
+            //System.out.println("Tenho metodos de pagamento.");
+            
+            ProdutoMongo pm = new ProdutoMongo((Set<Produto>)proDAO.values(), mc.getDatabase("Mercado"));
+            pm.insereCollection();
+            /*
             Document document = new Document("title", "MongoDB") 
                                 .append("id", 1)
                                 .append("description", "database") 
@@ -67,8 +72,7 @@ public class Migracao {
                                 .append("url", "http://www.tutorialspoint.com/mongodb/") 
                                 .append("by", "tutorials point");  
                                 carrinho.insertOne(document); 
-                                System.out.println("Document inserted successfully");
-            */
+                                System.out.println("Document inserted successfully");*/
         }
         catch(Exception e) {
             System.out.println(e);

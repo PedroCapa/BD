@@ -1,5 +1,5 @@
 package ClassesMongo;
-
+/*
 public class MetodosPagamentoMongo {
 	private Set<MetodosPagamento> metodosPagamento;
 	private MongoDatabase db;
@@ -14,3 +14,4 @@ public class MetodosPagamentoMongo {
 	}
 	
 }
+*/
