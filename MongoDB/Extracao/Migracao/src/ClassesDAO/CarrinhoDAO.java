@@ -15,10 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-/**
- *
- * @author Luis
- */
+
 public class CarrinhoDAO implements Map<Integer, Carrinho>{
     
     private Connection conn;

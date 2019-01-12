@@ -80,8 +80,7 @@ public class Carrinho {
     }
 
     public String toString() {
-        return "Id:" + this.id + "\nData: " + this.data +
-               "\nNif: " + this.nif + "\nIdTransporte:" + this.idTransporte
-                + "\nCompras:"+ this.compras;
+        return "\n\nId:" + this.id + "\nData: " + this.data +
+               "\nNif: " + this.nif + "\nIdTransporte:" + this.idTransporte;
     }
 }
