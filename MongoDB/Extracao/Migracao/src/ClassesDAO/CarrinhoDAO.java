@@ -26,8 +26,7 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
     public CarrinhoDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
-            this.conn = DriverManager.getConnection(connectionUrl);
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false");
         }
         catch(ClassNotFoundException | SQLException exc){}
     }
@@ -57,18 +56,17 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
         try {
             Carrinho carrinho = null;
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM Carrinho WHERE Id='"+(String)key+"'";
+            String sql = "SELECT * FROM Carrinho WHERE Id='"+key+"'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()){
                 carrinho = new Carrinho();
                 carrinho.setId(rs.getInt("Id"));
                 carrinho.setNif(rs.getLong("NIF"));
-                carrinho.setIdTransporte(rs.getInt("trans"));
+                carrinho.setIdTransporte(rs.getString("trans"));
                 Object o = rs.getObject("data");
                 String s = o.toString();
                 LocalDate data = LocalDate.parse(s);
                 carrinho.setData(data);
-                
             }
             return carrinho;
         }

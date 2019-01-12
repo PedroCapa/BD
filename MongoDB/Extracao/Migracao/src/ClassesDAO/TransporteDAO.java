@@ -19,13 +19,13 @@ import java.util.Set;
  *
  * @author Luis
  */
-public class TransporteDAO implements Map<Integer, Transporte>{
+public class TransporteDAO implements Map<String, Transporte>{
 
     private Connection conn;    
     public TransporteDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
+            String connectionUrl = "jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}
@@ -71,7 +71,7 @@ public class TransporteDAO implements Map<Integer, Transporte>{
     }
 
     @Override
-    public Transporte put(Integer k, Transporte v) {
+    public Transporte put(String k, Transporte v) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -80,10 +80,7 @@ public class TransporteDAO implements Map<Integer, Transporte>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void putAll(Map<? extends Integer, ? extends Transporte> map) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     @Override
     public void clear() {
@@ -91,14 +88,14 @@ public class TransporteDAO implements Map<Integer, Transporte>{
     }
 
     @Override
-    public Set<Integer> keySet() {
+    public Set<String> keySet() {
         try{
-            Set<Integer> ids = new HashSet<>();
+            Set<String> ids = new HashSet<>();
             Statement st = conn.createStatement();
             String str = "Select Designacao From Transporte";
             ResultSet res = st.executeQuery(str);
             while(res.next()){
-                ids.add(res.getInt("Designacao"));
+                ids.add(res.getString("Designacao"));
             }
             return ids;
         }
@@ -108,16 +105,21 @@ public class TransporteDAO implements Map<Integer, Transporte>{
     @Override
     public Collection<Transporte> values() {
         Collection<Transporte> transportes = new HashSet<>();
-        Set<Integer> keys = this.keySet();
-        for(int i: keys){
-            Transporte t = this.get(i);
+        Set<String> keys = this.keySet();
+        for(String str: keys){
+            Transporte t = this.get(str);
             transportes.add(t);
         }
         return transportes;
     }
 
     @Override
-    public Set<Entry<Integer, Transporte>> entrySet() {
+    public Set<Entry<String, Transporte>> entrySet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void putAll(Map<? extends String, ? extends Transporte> map) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -17,7 +17,7 @@ public class CompraDAO {
     public CompraDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
+            String connectionUrl = "jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}
@@ -71,15 +71,15 @@ public class CompraDAO {
         try {
             Compra compra = null;
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM Compra WHERE id='"+(String)key+"'";
+            String sql = "SELECT * FROM Compra WHERE id='"+key+"'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()){
                 compra = new Compra();
                 compra.setId(rs.getInt("id"));
                 compra.setPreco(rs.getFloat("Preco"));
                 compra.setQuantidade(rs.getInt("Quantidade"));
-                compra.setCart(Integer.valueOf(rs.getString("Carrinho")));
-                compra.setProd(Integer.valueOf(rs.getString("Produto")));
+                compra.setCart(Integer.valueOf(rs.getString("Cart")));
+                compra.setProd(Integer.valueOf(rs.getString("Prod")));
             }
             return compra;
         }

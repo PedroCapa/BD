@@ -18,7 +18,7 @@ public class ProdutoDAO {
     public ProdutoDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
+            String connectionUrl = "jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}
@@ -96,14 +96,14 @@ public class ProdutoDAO {
         try {
             Produto produto = null;
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM Produto WHERE id='"+(String)key+"'";
+            String sql = "SELECT * FROM Produto WHERE id='"+key+"'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()){
                 produto = new Produto();
                 produto.setId(rs.getInt("id"));
                 produto.setDesignacao(rs.getString("Designacao"));
                 produto.setPreco(rs.getFloat("Preco"));
-                produto.setDescricao(rs.getString("Descicao"));
+                produto.setDescricao(rs.getString("Descricao"));
                 produto.setCategoria(rs.getString("Categoria"));
                 produto.setNif(rs.getInt("NIF"));
                 produto.setQuantidade(rs.getInt("Quantidade"));
