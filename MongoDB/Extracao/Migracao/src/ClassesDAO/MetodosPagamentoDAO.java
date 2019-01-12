@@ -14,10 +14,10 @@ public class MetodosPagamentoDAO {
 
 	private Connection conn;
 
-	public MetodosPagamentoDAO(){
+	public MetodosPagamentoDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user=LFCC&password=55luis14&useSSL=false";
+            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}
