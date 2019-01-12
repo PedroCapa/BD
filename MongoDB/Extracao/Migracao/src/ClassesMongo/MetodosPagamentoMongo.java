@@ -1,14 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ClassesMongo;
 
-/**
- *
- * @author pmcca
- */
 public class MetodosPagamentoMongo {
-    
+	private Set<MetodosPagamento> metodosPagamento;
+	private MongoDatabase db;
+
+	public MetodosPagamentoMongo(MetodosPagamento metodosPagamento, MongoDatabase db) {
+		this.metodosPagamento = metodosPagamento;
+		this.db = db;
+	} 
+
+	public void makeDocuments() {
+		
+	}
+	
 }
