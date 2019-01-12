@@ -14,8 +14,8 @@ public class Main {
     
     public static void main(String [] args){
         
-        String userName = "LFCC";
-        String pass = "55luis14";
+        String userName = args[0];
+        String pass = args[1];
         
         CarrinhoDAO carDAO = new CarrinhoDAO(userName, pass);
         CompraDAO comDAO = new CompraDAO(userName, pass);
