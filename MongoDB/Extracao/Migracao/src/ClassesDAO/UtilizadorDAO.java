@@ -23,7 +23,7 @@ public class UtilizadorDAO implements Map<Integer, Utilizador>{
     public UtilizadorDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
+            String connectionUrl = "jdbc:mysql://localhost/mercado?" + "user="+userName+"&password="+pass+"&useSSL=false";
             this.conn = DriverManager.getConnection(connectionUrl);
         }
         catch(ClassNotFoundException | SQLException exc){}

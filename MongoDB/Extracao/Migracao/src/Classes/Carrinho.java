@@ -6,16 +6,16 @@ public class Carrinho {
     private int id;
     private LocalDate data;
     private long nif;
-    private int idTransporte;
+    private String idTransporte;
 
     public Carrinho() {
         this.id = 0;
         this.data = LocalDate.now();
         this.nif = 0;
-        this.idTransporte = 0;
+        this.idTransporte = "";
     }
 
-    public Carrinho(int id, LocalDate data, long nif, int idTransporte) {
+    public Carrinho(int id, LocalDate data, long nif, String idTransporte) {
         this.id = id;
         this.data = data;
         this.nif = nif;
@@ -41,7 +41,7 @@ public class Carrinho {
         return this.nif;
     }
 
-    public int getIdTransporte() {
+    public String getIdTransporte() {
         return this.idTransporte;
     }
 
@@ -57,7 +57,7 @@ public class Carrinho {
         this.nif = nif;
     }
 
-    public void setIdTransporte(int idTransporte) {
+    public void setIdTransporte(String idTransporte) {
         this.idTransporte = idTransporte;
     }
 
