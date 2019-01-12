@@ -19,7 +19,6 @@ public class Migracao {
 
             Transformacao t = new Transformacao();
 
-            // Vai buscar à base dados MySql
             CarrinhoDAO carDAO = new CarrinhoDAO(userName, pass);
             CompraDAO comDAO = new CompraDAO(userName, pass);
             MetodosPagamentoDAO mpDAO = new MetodosPagamentoDAO(userName, pass);
@@ -37,13 +36,18 @@ public class Migracao {
             MongoDatabase db = mc.getDatabase("Mercado");
             System.out.println("Conectado ao MongoDB");
 
-            ProdutoMongo pm = new ProdutoMongo((Set<Produto>)proDAO.values(), mc.getDatabase("Mercado"));
+            CarrinhoMongo crm 			= new CarrinhoMongo((Set<Carrinho>)carDAO.values(), db);
+            crm.insereCollection();
+            CompraMongo cm 				= new CompraMongo((Set<Compra>)comDAO.values(), db);
+            cm.insereCollection();
+            MetodosPagamentoMongo mpm 	= new MetodosPagamentoMongo((Set<MetodosPagamento>)mpDAO.values(), db);
+            mpm.insereCollection();
+            ProdutoMongo pm 			= new ProdutoMongo((Set<Produto>)proDAO.values(), db);
             pm.insereCollection();
-            TransporteMongo tm = new TransporteMongo((Set<Transporte>)traDAO.values(), mc.getDatabase("Mercado"));
+            TransporteMongo tm 			= new TransporteMongo((Set<Transporte>)traDAO.values(), db);
             tm.insereCollection();
-            UtilizadorMongo um = new UtilizadorMongo((Set<Utilizador>)userDAO.values(), mc.getDatabase("Mercado"));
-            um.insereCollection();
-            
+            UtilizadorMongo um 			= new UtilizadorMongo((Set<Utilizador>)userDAO.values(), db);
+            um.insereCollection();            
         }
         catch(Exception e) {
             System.out.println(e);
