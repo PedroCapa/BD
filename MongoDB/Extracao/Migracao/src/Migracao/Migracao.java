@@ -10,7 +10,6 @@ public class Migracao {
 
     public static void main(String[] args) {
         try {
-
             String userName = args[0];
             String pass = args[1];
 
