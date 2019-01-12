@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package ClassesDAO;
-import Classes.Carrinho;
+import Classes.Transporte;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,11 +19,10 @@ import java.util.Set;
  *
  * @author Luis
  */
-public class CarrinhoDAO implements Map<Integer, Carrinho>{
-    
-    private Connection conn;
-    
-    public CarrinhoDAO(String userName, String pass){
+public class TransporteDAO implements Map<Integer, Transporte>{
+
+    private Connection conn;    
+    public TransporteDAO(String userName, String pass){
         try{
             Class.forName("com.mysql.jdbc.Driver");
             String connectionUrl = "jdbc:mysql://localhost/configurafacil?" + "user="+userName+"&password="+pass+"&useSSL=false";
@@ -53,40 +52,36 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
     }
 
     @Override
-    public Carrinho get(Object key) {
+    public Transporte get(Object key) {
         try {
-            Carrinho carrinho = null;
+            Transporte transporte = null;
             Statement stm = conn.createStatement();
-            String sql = "SELECT * FROM Carrinho WHERE Id='"+(String)key+"'";
+            String sql = "SELECT * FROM Transporte WHERE Designacao='"+(String)key+"'";
             ResultSet rs = stm.executeQuery(sql);
             if (rs.next()){
-                carrinho = new Carrinho();
-                carrinho.setId(rs.getInt("Id"));
-                carrinho.setNif(rs.getLong("NIF"));
-                carrinho.setIdTransporte(rs.getInt("trans"));
-                Object o = rs.getObject("data");
-                String s = o.toString();
-                LocalDate data = LocalDate.parse(s);
-                carrinho.setData(data);
-                
+                transporte = new Transporte();
+                transporte.setDesignacao(rs.getString("Designacao"));
+                transporte.setDescricao(rs.getString("Descricao"));
+                transporte.setCusto(rs.getFloat("Custo"));
+                transporte.setData(rs.getInt("TempoEstimado"));
             }
-            return carrinho;
+            return transporte;
         }
         catch (NumberFormatException | SQLException e) {throw new NullPointerException(e.getMessage());}
     }
 
     @Override
-    public Carrinho put(Integer k, Carrinho v) {
+    public Transporte put(Integer k, Transporte v) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Carrinho remove(Object o) {
+    public Transporte remove(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void putAll(Map<? extends Integer, ? extends Carrinho> map) {
+    public void putAll(Map<? extends Integer, ? extends Transporte> map) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -100,10 +95,10 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
         try{
             Set<Integer> ids = new HashSet<>();
             Statement st = conn.createStatement();
-            String str = "Select Id From Carrinho";
+            String str = "Select Designacao From Transporte";
             ResultSet res = st.executeQuery(str);
             while(res.next()){
-                ids.add(res.getInt("Id"));
+                ids.add(res.getInt("Designacao"));
             }
             return ids;
         }
@@ -111,18 +106,18 @@ public class CarrinhoDAO implements Map<Integer, Carrinho>{
     }
 
     @Override
-    public Collection<Carrinho> values() {
-        Collection<Carrinho> carrinhos = new HashSet<>();
+    public Collection<Transporte> values() {
+        Collection<Transporte> transportes = new HashSet<>();
         Set<Integer> keys = this.keySet();
         for(int i: keys){
-            Carrinho car = this.get(i);
-            carrinhos.add(car);
+            Transporte t = this.get(i);
+            transportes.add(t);
         }
-        return carrinhos;
+        return transportes;
     }
 
     @Override
-    public Set<Entry<Integer, Carrinho>> entrySet() {
+    public Set<Entry<Integer, Transporte>> entrySet() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

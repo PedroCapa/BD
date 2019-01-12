@@ -5,16 +5,16 @@ public class Transporte {
     private String designacao;
     private String descricao;
     private float custo;
-    private LocalDateTime data;
+    private int data;
 
     public Transporte() {
         this.designacao = "";
         this.descricao = "";
         this.custo = 0;
-        this.data = LocalDateTime.now();
+        this.data = 0;
     }
 
-    public Transporte(String designacao, String descricao, float custo, LocalDateTime data) {
+    public Transporte(String designacao, String descricao, float custo, int data) {
         this.designacao = designacao;
         this.descricao = descricao;
         this.custo = custo;
@@ -40,7 +40,7 @@ public class Transporte {
         return this.custo;
     }
 
-    public LocalDateTime getData() {
+    public int getData() {
         return this.data;
     }
 
@@ -56,7 +56,7 @@ public class Transporte {
         this.custo = custo;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(int data) {
         this.data = data;
     }
     public Transporte clone() {
