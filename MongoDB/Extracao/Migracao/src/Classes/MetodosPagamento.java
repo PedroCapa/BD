@@ -64,7 +64,7 @@ public class MetodosPagamento {
 
     @Override
     public String toString() {
-        return "Método de Pagamento{" + "id=" + id + ", designacao=" + designacao + '}';
+        return "Método de Pagamento{" + "id=" + id + ", designacao=" + designacao + '}' + '\n';
     }
 
 }

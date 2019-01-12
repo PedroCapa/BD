@@ -1,5 +1,7 @@
 package Migracao;
 
+import Classes.Transformacao;
+import ClassesDAO.*;
 import com.mongodb.*;
 import com.mongodb.client.*;
 import java.util.logging.Level;
@@ -14,7 +16,7 @@ public class Migracao {
             String userName = args[0];
             String pass = args[1];
 
-            Transformacao t = new Transformocao();
+            Transformacao t = new Transformacao();
 
             // Vai buscar à base dados MySql
             CarrinhoDAO carDAO = new CarrinhoDAO(userName, pass);
@@ -24,9 +26,10 @@ public class Migracao {
             TransporteDAO traDAO = new TransporteDAO(userName, pass);
             UtilizadorDAO userDAO = new UtilizadorDAO(userName, pass);
 
-            t.getThemAll(carDAO, comDao, mpDAO, proDAO, traDAO, userDAO);
+            t.getThemAll(carDAO, comDAO, mpDAO, proDAO, traDAO, userDAO);
 
-            System.out.println(t.getCarrinho());
+            System.out.println(t.getCarrinhos());
+            System.out.println(t.getUtilizadores());
     
             /*
             compras.forEach((compra) -> {System.out.println(compra);});
