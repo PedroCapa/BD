@@ -20,7 +20,7 @@ public class CarrinhoMongo {
         for(Carrinho c : this.carrinho){
             Document document = new Document();
             document.append("Id", c.getId())
-                    .append("Data", c.getData())
+                    .append("Data", c.getData().toString())
                     .append("Nif", c.getNif()) 
                     .append("idTransporte", c.getIdTransporte())
                     .append("Compras", c.getCompras());

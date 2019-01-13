@@ -8,7 +8,6 @@ import com.mongodb.client.*;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bson.Document;
 
 public class Migracao {
 
@@ -35,11 +34,11 @@ public class Migracao {
             MongoClient mc = new MongoClient("localhost", 27017);
             MongoDatabase db = mc.getDatabase("Mercado");
             System.out.println("Conectado ao MongoDB");
-
-            CarrinhoMongo crm 			= new CarrinhoMongo((Set<Carrinho>)carDAO.values(), db);
-            crm.insereCollection();
+                        
             CompraMongo cm 				= new CompraMongo((Set<Compra>)comDAO.values(), db);
             cm.insereCollection();
+            CarrinhoMongo crm 			= new CarrinhoMongo((Set<Carrinho>)carDAO.values(), db);
+            crm.insereCollection();
             MetodosPagamentoMongo mpm 	= new MetodosPagamentoMongo((Set<MetodosPagamento>)mpDAO.values(), db);
             mpm.insereCollection();
             ProdutoMongo pm 			= new ProdutoMongo((Set<Produto>)proDAO.values(), db);
@@ -47,10 +46,11 @@ public class Migracao {
             TransporteMongo tm 			= new TransporteMongo((Set<Transporte>)traDAO.values(), db);
             tm.insereCollection();
             UtilizadorMongo um 			= new UtilizadorMongo((Set<Utilizador>)userDAO.values(), db);
-            um.insereCollection();            
+            um.insereCollection();  
+          
         }
         catch(Exception e) {
-            System.out.println(e);
+            System.out.println("Ocorre um erro\n\n\n\n" + e);
         }
     }
 }

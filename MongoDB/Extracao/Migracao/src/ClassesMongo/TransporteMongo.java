@@ -17,7 +17,6 @@ public class TransporteMongo {
     public void insereCollection(){
         MongoCollection<Document> transporte = this.db.getCollection("Transporte");
         for(Transporte t: this.transportes){
-            System.out.println(t);
             Document document = new Document();
             document.append("Designacao", t.getDesignacao()) 
                     .append("Descricao", t.getDescricao()) 

@@ -17,7 +17,6 @@ public class UtilizadorMongo {
     public void insereCollection(){
         MongoCollection<Document> utilizador = this.db.getCollection("Utilizador");
         for(Utilizador u: this.utilizadores){
-            System.out.println(u);
             Document document = new Document();
             document.append("Nif", u.getNif()) 
                     .append("Custo", u.getNome())
