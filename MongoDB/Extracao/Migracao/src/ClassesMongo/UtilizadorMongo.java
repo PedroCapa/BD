@@ -22,7 +22,7 @@ public class UtilizadorMongo {
                     .append("Nome", u.getNome())
                     .append("Morada", u.getMorada()) 
                     .append("Password", u.getPassword())
-                    .append("Nascimento", u.getNascimento())
+                    .append("Nascimento", u.getNascimento().toString())
                     .append("Saldo", u.getSaldo()) 
                     .append("Emails", u.getEmails())
                     .append("Pagamentos", u.getPagamentos()) 

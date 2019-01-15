@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -63,6 +64,10 @@ public class UtilizadorDAO implements Map<Integer, Utilizador>{
                 u.setNome(rs.getString("Nome"));
                 u.setSaldo(rs.getFloat("Saldo"));
                 u.setPassword(rs.getString("password"));
+                Object o = rs.getObject("DataNascimento");
+                String s = o.toString();
+                LocalDate data = LocalDate.parse(s);
+                u.setNascimento(data);
                 ResultSet r = stm.executeQuery(telemoveis);
                 while(r.next()){
                     t.add(r.getInt("Numero"));
