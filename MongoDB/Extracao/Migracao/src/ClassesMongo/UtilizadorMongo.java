@@ -19,9 +19,9 @@ public class UtilizadorMongo {
         for(Utilizador u: this.utilizadores){
             Document document = new Document();
             document.append("Nif", u.getNif()) 
-                    .append("Custo", u.getNome())
+                    .append("Nome", u.getNome())
                     .append("Morada", u.getMorada()) 
-                    .append("Nome", u.getPassword())
+                    .append("Password", u.getPassword())
                     .append("Nascimento", u.getNascimento())
                     .append("Saldo", u.getSaldo()) 
                     .append("Emails", u.getEmails())

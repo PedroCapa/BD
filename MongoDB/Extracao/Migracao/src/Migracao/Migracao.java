@@ -37,6 +37,7 @@ public class Migracao {
                         
             CompraMongo cm 				= new CompraMongo((Set<Compra>)comDAO.values(), db);
             cm.insereCollection();
+            System.out.println("Fez print");
             CarrinhoMongo crm 			= new CarrinhoMongo((Set<Carrinho>)carDAO.values(), db);
             crm.insereCollection();
             MetodosPagamentoMongo mpm 	= new MetodosPagamentoMongo((Set<MetodosPagamento>)mpDAO.values(), db);
