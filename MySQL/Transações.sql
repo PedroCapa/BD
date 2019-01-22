@@ -11,6 +11,7 @@ Insert Into compra
 		   (30, 5, 6),
            (5, 5, 10);
 COMMIT;
+rollback;
 
 -- Transação que adiciona cliente e toda a informação sobre ele
 Start Transaction;
@@ -33,3 +34,4 @@ Set u.saldo = 250.14
 Where u.NIF = 136390670;
 
 COMMIT;
+rollback;
