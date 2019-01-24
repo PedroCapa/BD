@@ -3,14 +3,14 @@ Use mercado;
 -- Número de produtos no mercado com quantidade superior a 5 * Funtcions
 SELECT Distinct QuantidadeProdutosN(5) from produto;
 
--- Produtos que o utilizador 13 colocou à venda * Procedure
-CALL produto_Venda_utilizador(13);
+-- Produtos que o utilizador 11 colocou à venda * Procedure
+CALL produto_Venda_utilizador(11);
 
 -- Quantidade gasta pelo o utilizador 2 no ano 2017 * Procedure
 Call gastouUtilizadorPeriodo(2, '2017-01-01', '2018-01-01');
 
--- Quantidade ganha pelo utilizador 7 no mercado * Procedure
-Call ganhouUtilizadorPeriodo(7);
+-- Quantidade ganha pelo utilizador 2 no mercado * Procedure
+Call ganhouUtilizadorPeriodo(2);
 
 -- Ver todos os produtos da categoria Arte * Procedure
 Call FiltraPesquisa('Arte');
@@ -48,13 +48,23 @@ WHERE
 -- Criar uma transação que cria um carrinho do utilizador 1 e insere algumas compras neste
 Start Transaction;
 
-Insert Into carrinho
-	Values (curdate(), 'TNT', 1);
+Insert Into utilizador (NIF, Nome, Morada, DataNascimento, password)
+	Values (136390670, 'João Castor', 'Gualtar', '1990-08-23', 'IvanZaytsev');
+    
+Insert Into telemovel
+	Values ('236558656', 136390670),
+		   ('753779279', 136390670);
+           
+Insert Into email
+	Values ('zaytsevIvan@gmail.com', 136390670);
+    
+Insert Into utilizador_metodosPagamento
+	Values (136390670, 2, '34j5jsi58ugsh4h9ah94ha9f');
+    
+Update Utilizador u
+Set u.saldo = 250.14
+Where u.NIF = 136390670;
 
-Insert Into compra
-	Values (2, 5, 4),
-		   (30, 5, 6),
-           (5, 5, 10);
 COMMIT;
 rollback;
 
